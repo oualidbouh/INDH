@@ -31,13 +31,14 @@ class CollaboratorCtrl extends Controller
 
     public function getBets()
     {
-        $bet = new BET();
-        $datas = $bet->lists('bet_id','name_bet');
-        $bets=[];
+         $arch = new BET();
+        $datas =  $arch->lists('bet_id','name_bet');
+        $archs = [];
         foreach ($datas as $data => $value) {
-            $bets[]=array("id"=>$value,"name"=>$data);
+            $archs[]=array("id"=>$value,"name"=>$data);
         }
-        return $bets;
+        return $archs;
+        //return BET::all();
     }
 
     public function getArchs()

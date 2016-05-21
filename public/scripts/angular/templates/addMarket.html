@@ -55,7 +55,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-lg-3">
-            <label for="inputEmail" class="col-lg-4 control-label">Titre Du marché</label>
+            <label for="inputEmail" class="control-label">Titre Du marché</label>
           </div>
           <div class="col-lg-8">
             <input class="form-control" name="name_marche"  placeholder="Titre du marché" type="text">
@@ -65,7 +65,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-lg-3">
-            <label for="type_marche" class="col-lg-4 control-label">Type du marché</label>
+            <label for="type_marche" class="control-label">Type du marché</label>
           </div>
           <div class="col-lg-8">
             <select class="form-control">
@@ -121,7 +121,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-lg-3">
-            <label class="col-lg-4 control-label" for="dateDebutTravaux">Date de début des travaux : </label>
+            <label class="control-label" for="dateDebutTravaux">Date de début des travaux : </label>
           </div>
           <div class="col-lg-8">
             <div class="form-group">
@@ -143,7 +143,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-lg-3">
-            <label class="col-lg-4 control-label" for="duree_travaux">Durée des travaux</label>
+            <label class="control-label" for="duree_travaux">Durée des travaux</label>
           </div>
           <div class="col-lg-8">
                <input type="text" class="form-control" name="duree_travaux" />
@@ -153,7 +153,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-lg-3">
-            <label class="col-lg-4 control-label" for="decompte_marche">Decompte</label>
+            <label class="control-label" for="decompte_marche">Decompte</label>
           </div>
           <div class="col-lg-8">
             <input type="text" name="decompte_marche" class="form-control"/>
@@ -163,10 +163,10 @@
       <div class="form-group">
         <div class="row">
           <div class="col-lg-3">
-            <label class="col-lg-4 control-label" for="liste_maitre_ouvrage">Liste des Maitre d'ouvrage</label>
+            <label class="control-label" for="liste_maitre_ouvrage">Liste des Maitre d'ouvrage</label>
           </div>
           <div class="col-lg-7">
-            <select name="liste_maitre_ouvrage" class="form-control " ng-model="maitre">
+            <select name="liste_maitre_ouvrage" class="form-control " >
               <option ng-repeat="maitre in maitres">{{maitre.name}}</option>
             </select>
           </div>
@@ -235,7 +235,7 @@
                     <label class="control-label">
                       Fax Maitre douvrage
                     </label>
-                  </div>
+                  </div> 
                   <div class="col-lg-8">
                     <div class="">
                       <input class="form-control" type="text">
@@ -273,8 +273,8 @@
               <label class="col-lg-4 control-label" for="liste_labo">Liste des Laboratoire : </label>
             </div>
             <div class="col-lg-7">
-              <select class="form-control" ng-model="l">
-                <option ng-repeat="l in laboratoires">{{l.name}}</option>
+              <select class="form-control">
+                <option ng-repeat ="l in laboratoires">{{l.name}}</option>
               </select>
           </div>
           <div class="col-lg-2 col-lg-offset-0">
@@ -381,7 +381,7 @@
         <label class="col-lg-4 control-label" for="liste_labo">Liste des Bureaux d'études : </label>
       </div>
       <div class="col-lg-7">
-        <select class="form-control" ng-model="bet">
+        <select class="form-control">
             <option ng-repeat="bet in bets">{{bet.name}}</option>
         </select>
       </div>
@@ -489,7 +489,7 @@
   </div>
   <div class="col-lg-8">
    <div class="col-lg-6">
-    <select class="form-control" ng-model="arch">
+    <select class="form-control" >
     <option ng-repeat="arch in architectes">{{arch.name}}</option>
     </select>
   </div>
@@ -596,7 +596,7 @@
   </div>
   <div class="col-lg-8">
    <div class="col-lg-6">
-    <select class="form-control" ng-model="soc">
+    <select class="form-control" >
      <option ng-repeat="soc in societes">{{soc.name}}</option>
     </select>
   </div>

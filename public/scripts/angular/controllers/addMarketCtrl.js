@@ -47,7 +47,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,collaborators,$routePa
 	collaborators.getArchs('archs',function(data){
 		$scope.architectes=data;
 	});
-
+	/*hada makhdmch, problem fle nom dyal la table*/
 	collaborators.getBET('bets',function(data){
 		$scope.bets = data;
 	});

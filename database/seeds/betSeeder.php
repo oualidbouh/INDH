@@ -11,7 +11,7 @@ class betSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('bet')->truncate();
+        DB::table('b_e_t_s')->truncate();
         $bets = array(
         	[
         		'name_bet'  => "ayachi",
@@ -49,6 +49,6 @@ class betSeeder extends Seeder
         		'email_bet' => "soufiane@chalouh.com"
         	],
         	);
-         DB::table('bet')->insert($bets);
+         DB::table('b_e_t_s')->insert($bets);
     }
 }
