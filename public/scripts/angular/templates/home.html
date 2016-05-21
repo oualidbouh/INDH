@@ -1,0 +1,19 @@
+ <div class="row">
+    <div class="col-lg-3">
+        <div class="years">
+            <div class="list-group">
+                <a href="#/" ng-click='select($index)' ng-repeat="year in years" 
+                class="list-group-item text-center {{year.active}}"><b>{{year.year}}</b></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="types">
+            <div class="list-group">
+                <a href="#/bp" class="list-group-item"><b>Budget Prefectoral</b></a>
+                <a href="#/bg" class="list-group-item"><b>Budgetl Genera</b></a>
+                <a href="#/indh" class="list-group-item"><b>INDH</b></a>
+            </div>
+        </div>
+    </div>
+</div>

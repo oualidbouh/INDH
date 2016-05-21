@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
@@ -36,3 +36,30 @@ Route::get('marches',function(){
 Route::post('addArchi','ArchitecteController@store');
 
 Route::post('addMaitreOuvrage','MaitreOuvrageController@store');
+
+Route::get('getAllLaboratoires','LaboratoireController@getAllLaboratoires');
+
+
+*/
+
+
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get("/{year}/marches","marchesCtrl@getMarkets");
+Route::get("/labos","CollaboratorCtrl@getLabos");
+Route::get("/bets","CollaboratorCtrl@getBets");
+Route::get("/archs","CollaboratorCtrl@getArchs");
+Route::get("/societes","CollaboratorCtrl@getSocietes");
+Route::get("/maitres","CollaboratorCtrl@getMaitres");
+
+Route::post("/labos","CollaboratorCtrl@postLabos");
+Route::post("/bets","CollaboratorCtrl@postBets");
+Route::post("/archs","CollaboratorCtrl@postArchs");
+Route::post("/societes","CollaboratorCtrl@postSocietes");
+Route::post("/maitres","CollaboratorCtrl@postMaitres");
+
+
+
+?>

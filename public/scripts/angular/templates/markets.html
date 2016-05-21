@@ -1,0 +1,13 @@
+
+<table class="table table-hover table-striped table-bordered text-center">
+	<thead>
+		<tr>
+			<th ng-repeat="col in cols track by $index" ng-show="cols[$index]" class="text-center">col{{$index}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td ng-repeat="col in cols track by $index" ng-show="cols[$index]">td{{$index}}</td>
+		</tr>
+	</tbody>
+</table>

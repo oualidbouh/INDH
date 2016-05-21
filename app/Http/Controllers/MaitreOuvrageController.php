@@ -36,7 +36,9 @@ class MaitreOuvrageController extends Controller
      */
     public function store(Request $request)
     {
-/*Insertion des données saisies dans le formulaire d'ajout des Maitres d'ouvrage*/
+        
+        /*Insertion des données saisies dans le formulaire d'ajout des Maitres d'ouvrage*/
+        
         $param = $request->all();
         $maitre = new Maitre_ouvrage();
         $maitre->name_maitre_ouvrage = $param['name_maitre_ouvrage'];
@@ -46,6 +48,7 @@ class MaitreOuvrageController extends Controller
         $maitre->adresse_maitre_ouvrage=$param['adresse_maitre_ouvrage'];
         $maitre->save();
         return \Response::make('ok',200);  
+        
 
     }
 

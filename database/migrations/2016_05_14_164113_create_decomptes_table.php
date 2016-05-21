@@ -15,7 +15,7 @@ class CreateDecomptesTable extends Migration
         Schema::create('decomptes', function (Blueprint $table) {
             $table->increments('decompte_id');
             $table->integer('marche_id');
-            $table->float("montant");
+            $table->float('montant');
             $table->timestamps();
         });
     }

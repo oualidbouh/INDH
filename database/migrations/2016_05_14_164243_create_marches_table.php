@@ -14,6 +14,7 @@ class CreateMarchesTable extends Migration
     {
         Schema::create('marches', function (Blueprint $table) {
             $table->increments('march_id');
+            $table->integer('year');
             $table->string('type_budget');
             $table->string('objet');
             $table->float('montant');
