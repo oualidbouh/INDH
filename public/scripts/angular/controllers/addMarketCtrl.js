@@ -1,33 +1,4 @@
-/*Factory des collaborateurs*/
-app.factory('collaborators',function($http){
-    return {
-        getLabs : function(url,callback){
-            $http.get(url).success(function(res){
-                callback(res);
-            });
-        },
-        getArchs : function(url,callback){
-        	$http.get(url).success(function(res){
-        		callback(res);
-        	});
-        },
-        getBET : function(url,callback){
-        	$http.get(url).success(function(res){
-        		callback(res);
-        	})
-        },
-        getSocietes : function(url,callback){
-        	$http.get(url).success(function(res){
-        		callback(res);
-        	});
-        },
-        getMaitre : function(url,callback){
-        	$http.get(url).success(function(res){
-        		callback(res);
-        	})
-        }
-    };
-});
+
 /*Controller function*/
 app.controller("addMarketCtrl",function($scope,$rootScope,collaborators,$routeParams){
 
@@ -38,39 +9,105 @@ app.controller("addMarketCtrl",function($scope,$rootScope,collaborators,$routePa
 	$scope.societes = [];
 	$scope.maitres = [];
 
-	/*get collaborators*/
+	collaborators.getLabs()
+        .success(function(res){
+            $scope.laboratoires = res;
+        })
+        .error(function(){
+            alert('error loading Laboratoires');
+        });
 
-	collaborators.getLabs('labos',function(data){
-		$scope.laboratoires = data;
-	});
+	collaborators.getArchs()
+        .success(function(res){
+            $scope.architectes = res;
+        })
+        .error(function(){
+            alert('error loading Archs');
+        });
+	
+	collaborators.getBETS()
+        .success(function(res){
+            $scope.bets = res;
+        })
+        .error(function(){
+            alert('error loading bets');
+        });
 
-	collaborators.getArchs('archs',function(data){
-		$scope.architectes=data;
-	});
-	/*hada makhdmch, problem fle nom dyal la table*/
-	collaborators.getBET('bets',function(data){
-		$scope.bets = data;
-	});
+	collaborators.getSocietes()
+        .success(function(res){
+            $scope.societes = res;
+        })
+        .error(function(){
+            alert('error loading societes');
+        });
 
-	collaborators.getSocietes('societes',function(data){
-		$scope.societes = data;
-	});
+	collaborators.getMaitre()
+        .success(function(res){
+            $scope.maitres = res;
+        })
+        .error(function(){
+            alert('error loading maitres');
+        });
 
-	collaborators.getMaitre('maitres',function(data){
-		$scope.maitres = data;
-	});
+	$scope.labo = {};
+	$scope.soc = {};
+	$scope.maitre = {};
+	$scope.archi = {};
+	$scope.bet = {};
+    
+    $scope.saveSociete = function(){
+        collaborators.postSociete($scope.soc)
+            .success(function(res){
+               $scope.societes.push(res);
+            })
+            .error(function(){
+                alert('error')
+            });
+    }
+	$scope.saveLabo = function(){
+		collaborators.postLab($scope.labo)
+            .success(function(res){
+                console.log("data"+res.nom);
+                $scope.laboratoires.push(res);
+                $('#labModal').modal("toggle");
+            })
+            .error(function(){
+                alert('error');
+            });
+	}
+    
+    $scope.saveArchitect = function(){
+        collaborators.postArch($scope.archi)
+            .success(function(res){
+                $scope.architectes.push(res);
+                $('#archModal').modal("toggle");
+            })
+            .error(function(){
+                alert('error')
+            });
+    }
+	
+    $scope.saveBet = function(){
+		collaborators.postBet($scope.bet)
+            .success(function(res){
+                $scope.bets.push(res);
+                $('#betModal').modal("toggle");
+            })
+            .error(function(){
+                alert('error');
+            });
+	}
+    
+    $scope.saveMaitre = function(){
+        collaborators.postMaitre($scope.maitre)
+            .success(function(res){
+                $scope.maitres.push(res);
+                $('#maitreModal').modal("toggle");
+            })
+            .error(function(){
+                alert('error')
+            });
+    }
 
-	/* end */
-
-	/* submit event*/
-
-
-
-
-
-
-
-	/*end*/
-	$rootScope.title = "Ajouter nouveau marché";
+	
 });
-

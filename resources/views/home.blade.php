@@ -5,8 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{{url('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{url('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
-    <!--<link rel="stylesheet" href="{{url('https://bootswatch.com/paper/bootstrap.min.css')}}">
--->
+    <link rel="stylesheet" href="{{url('https://bootswatch.com/paper/bootstrap.min.css')}}">
+
     <style type="text/css">
         body{
             padding-top: 15px;
@@ -32,6 +32,7 @@
     
     <script src="{{url('bower_components/angular-route/angular-route.js')}}"></script>
     <script type="text/javascript" src="{{url('scripts/angular/app.js')}}"></script>
+    <script type="text/javascript" src="{{url('scripts/angular/factories/collaboratorFactory.js')}}"></script>
     <script type="text/javascript" src="{{url('scripts/angular/controllers/homeCtrl.js')}}"></script>
     <script type="text/javascript" src="{{url('scripts/angular/controllers/bgCtrl.js')}}"></script>
     <script type="text/javascript" src="{{url('scripts/angular/controllers/bpCtrl.js')}}"></script>

@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Maitre_ouvrage;
 use App\Laboratoire;
 use App\Architecte;
@@ -18,91 +15,99 @@ class CollaboratorCtrl extends Controller
     // GET METHODS
     public function getLabos()
     {
-        $lab = new laboratoire();
-        $datas=$lab->lists('labo_id','name_labo');
-        $labos = [];
-        foreach($datas as $data => $value){
-            /*Creer objet JSON*/
-           $labos[]=array("id"=>$value,"name"=>$data);
-        }
-        /*retourne tous les labos*/
-    return $labos;
+        return Laboratoire::all();
     }
 
     public function getBets()
     {
-         $arch = new BET();
-        $datas =  $arch->lists('bet_id','name_bet');
-        $archs = [];
-        foreach ($datas as $data => $value) {
-            $archs[]=array("id"=>$value,"name"=>$data);
-        }
-        return $archs;
-        //return BET::all();
+         
+        return BET::all();
     }
 
     public function getArchs()
     {
-        $arch = new Architecte();
-        $datas =  $arch->lists('archi_id','name_archi');
-        $archs = [];
-        foreach ($datas as $data => $value) {
-            $archs[]=array("id"=>$value,"name"=>$data);
-        }
-        return $archs;
+        return Architecte::all();
     }
 
     public function getSocietes()
     {
-        $soc = new Societe();
-        $datas=$soc->lists('societe_id','name_societe');
-
-        $socs = [];
-        foreach ($datas as $data => $value) {
-            $socs[]= array("id"=>$value,"name"=>$data);
-        }
-
-        return $socs;
+       return Societe::all();
     }
 
-    public function getMaitres($value='')
+    public function getMaitres()
     {
-         $m = new Maitre_ouvrage();
-        $datas=$m->lists('Maitre_ouvrage_id','name_maitre_ouvrage');
-
-        $maitres = [];
-        foreach ($datas as $data => $value) {
-            $maitres[]= array("id"=>$value,"name"=>$data);
-        }
-
-        return $maitres;
+       return Maitre_ouvrage::all();
     }
 
 
     // POST METHODS
     public function postLabos(Request $request)
     {
+        $param = $request->all();
         $labo = new Laboratoire();
+        $labo->name_labo = $param['nom'];
+        $labo->tel_labo = $param['tel'];
+        $labo->fax_labo = $param['fax'];
+        $labo->email_labo = $param['email'];
+        $labo->adresse_labo = $param['adresse'];
+        
+        //return \Response::make('ok',200);
+        $labo->save();
+        return Laboratoire::all()->last();
 
     }
-// Regler la Tablde de BET
+
     public function postBets(Request $request)
     {
-        
+        $param = $request->all();
+        $bet = new BET();
+        $bet->name_bet = $param['nom'];
+        $bet->tel_bet = $param['tel'];
+        $bet->fax_bet = $param['fax'];
+        $bet->adresse_bet = $param['adresse'];
+        $bet->email_bet = $param['email'];
+        $bet->save();
+        return BET::all()->last();
     }
 
     public function postArchs(Request $request)
     {
+        $param = $request->all();
         $arc = new Architecte();
+        $arc->name_archi = $param['nom'];
+        $arc->tel_archi = $param['tel'];
+        $arc->fax_archi = $param['fax'];
+        $arc->email_archi = $param['email'];
+        $arc->adresse_archi = $param['adresse'];
+        $arc->save();
+        return Architecture::all()->last();
     }
+
 
     public function postSocietes(Request $request)
     {
+        $param = $request->all();
         $soc = new Societe();
+        $soc->name_societe = $param['nom'];
+        $soc->tel_societe = $param['tel'];
+        $soc->fax_societe = $param['fax'];
+        $soc->email_societe = $param['email'];
+        $soc->adresse_societe = $param['adresse'];
+        $soc->save();
+       return Societe::all()->last();
     }
+
 
     public function postMaitres(Request $request)
     {
+        $param = $request->all();
         $maitre = new Maitre_ouvrage();
+        $maitre->name_maitre_ouvrage = $param['nom'];
+        $maitre->tel_maitre_ouvrage = $param['tel'];
+        $maitre->fax_maitre_ouvrage = $param['fax'];
+        $maitre->email_maitre_ouvrage = $param['email'];
+        $maitre->adresse_maitre_ouvrage = $param['adresse'];
+        $maitre->save();
+        return Maitre_ouvrage::all()->last();
     }
 }

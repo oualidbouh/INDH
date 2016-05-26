@@ -1,35 +1,16 @@
-  <style type="text/css">
-    @media(min-width: 200px){
-      .round-button {
-        width: 15px;
-      }
-    }
-
-    @media(min-width: 500px){
-      .round-button {
-        width:20px;
-      }
-    }
-    
-    @media(min-width: 700px){
-      .round-button {
-        width:35px;
-      }
-    }
-
-
-    .round-button-circle {
-      width: 100%;
-      height:0;
-      padding-bottom: 100%;
-      border-radius: 50%;
-      overflow:hidden;
-      background: #4679BD; 
-      box-shadow: 0 0 3px gray;
-    }
+<style type="text/css">
+  .round-button-circle {
+    width: 100%;
+    height:0;
+    padding-bottom: 100%;
+    border-radius: 50%;
+    overflow:hidden;
+    background: #4679BD; 
+    box-shadow: 0 0 3px gray;
   }
   .round-button-circle:hover {
     background:#30588e;
+    cursor: pointer;
   }
   .round-button a {
     display:block;
@@ -46,28 +27,44 @@
     font-weight:bold;
     text-decoration:none;
   }
+  @media(min-width: 200px){
+    .round-button {
+      width: 15px;
+    }
+  }
+
+  @media(min-width: 500px){
+    .round-button {
+      width:20px;
+    }
+  }
+  @media(min-width: 700px){
+    .round-button {
+      width:35px;
+    }
+  }
 </style>
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
 <div>
   <form class="form-horizontal">
     <fieldset>
-      <legend>Ajouter un Marché : </legend>
+      <legend>Ajouter Marché</legend>
       <div class="form-group">
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <label for="inputEmail" class="control-label">Titre Du marché</label>
           </div>
-          <div class="col-lg-8">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <input class="form-control" name="name_marche"  placeholder="Titre du marché" type="text">
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <label for="type_marche" class="control-label">Type du marché</label>
           </div>
-          <div class="col-lg-8">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <select class="form-control">
               <option>INDH</option>
               <option>BP</option>
@@ -78,431 +75,173 @@
       </div>
       <div class="form-group">
         <div class="row">
-          <div class="col-lg-3">
-            <label for="description_marche" class="col-lg-4 control-label">Description du marché</label>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label for="description_marche" class="control-label">Description du marché</label>
           </div>
-          <div class="col-lg-8">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <textarea class="form-control" name="description_marche" rows="3" id="textArea"></textarea>
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="row">
-          <div class="col-lg-3">
-            <label for="budget_marche" class="col-lg-4 control-label">Budget Du marché</label>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label for="budget_marche" class="control-label">Budget Du marché</label>
           </div> 
-          <div class="col-lg-8">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <input type="text" class="form-control" name="budget_marche" />
           </div>
         </div>
       </div>
       <div class="form-group">
-        <div class="row">
-          <div class="col-lg-3">
-            <label class="col-lg-4 control-label" for="dateOuverturePlis">Date d'ouverture Des plis</label>  
+        <div class="row"> 
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Date d'ouverture des plis</label>
           </div>
-          <div class="col-lg-8">
-            <div class="form-group">
-              <div class='input-group date' >
-                <input type='text' class="form-control" id='date1'/>
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-                <script type="text/javascript">
-                  $(function () {
-                    $('#date1').datetimepicker();
-                  });
-                </script>
-              </div>
-            </div>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <input type="text" class="form-control" id="date1">
+            <script type="text/javascript">
+              $(function () {
+                $('#date1').datetimepicker();
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row"> 
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Date debut des travaux</label>
+          </div>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <input type="text" class="form-control" id="date2">
+            <script type="text/javascript">
+              $(function () {
+                $('#date2').datetimepicker();
+              });
+            </script>
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="row">
-          <div class="col-lg-3">
-            <label class="control-label" for="dateDebutTravaux">Date de début des travaux : </label>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label class="control-label" for="duree_travaux">Durée des travaux (en j)</label>
           </div>
-          <div class="col-lg-8">
-            <div class="form-group">
-              <div class='input-group date' >
-                <input type='text' class="form-control" id='date2'/>
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-                <script type="text/javascript">
-                  $(function () {
-                    $('#date2').datetimepicker();
-                  });
-                </script>
-              </div>
-            </div>
-          </div>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+           <input type="text" class="form-control" name="duree_travaux" />
+         </div>
+       </div>
+     </div>
+     <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="control-label" for="liste_labo">Laboratoire : </label>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-lg-3">
-            <label class="control-label" for="duree_travaux">Durée des travaux</label>
-          </div>
-          <div class="col-lg-8">
-               <input type="text" class="form-control" name="duree_travaux" />
-          </div>
+        <div class="col-lg-7">
+          <select class="form-control">
+            <option ng-repeat ="l in laboratoires">{{l.name_labo}}</option>
+          </select>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-lg-3">
-            <label class="control-label" for="decompte_marche">Decompte</label>
-          </div>
-          <div class="col-lg-8">
-            <input type="text" name="decompte_marche" class="form-control"/>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-lg-3">
-            <label class="control-label" for="liste_maitre_ouvrage">Liste des Maitre d'ouvrage</label>
-          </div>
-          <div class="col-lg-7">
-            <select name="liste_maitre_ouvrage" class="form-control " >
-              <option ng-repeat="maitre in maitres">{{maitre.name}}</option>
-            </select>
-          </div>
-          <div class="col-lg-2 col-lg-offset-0">
-            <div class="round-button">
-              <div class="round-button-circle">
-                <a  class="round-button" data-toggle="modal" data-target="#maitreModal">
-                  +
-                </a>
-              </div>
+        <div class="col-lg-2 col-lg-offset-0">
+          <div class="round-button">
+            <div class="round-button-circle">
+              <a  class="round-button" data-toggle="modal" data-target="#labModal">
+                +
+              </a>
             </div>
-          </div>
-          <div  id="maitreModal" class="modal fade">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title">Ajouter un maitre d'ouvrage</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-lg-4">
-                        <label class="control-label">
-                          Nom Maitre douvrage
-                        </label>
-                      </div>
-                      <div class="col-lg-8">
-                        <div class="">
-                          <input class="form-control" type="text">
-                        </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <label class="control-label">
-                      Tel Maitre douvrage
-                    </label>
-                  </div>
-                  <div class="col-lg-8">
-                    <div class="">
-                      <input class="form-control" type="text">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <label class="control-label">
-                      Email Maitre douvrage
-                    </label>
-                  </div>
-                  <div class="col-lg-8">
-                    <div class="">
-                      <input class="form-control" type="email">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <label class="control-label">
-                      Fax Maitre douvrage
-                    </label>
-                  </div> 
-                  <div class="col-lg-8">
-                    <div class="">
-                      <input class="form-control" type="text">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <label class="control-label">
-                      Addresse Maitre douvrage
-                    </label>
-                  </div>
-                  <div class="col-lg-8">
-                    <div class="">
-                      <input class="form-control" type="text">
-                    </div>
-                  </div>
-                </div>
-              </div>
-                </div>
-                <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-lg-3">
-              <label class="col-lg-4 control-label" for="liste_labo">Liste des Laboratoire : </label>
-            </div>
-            <div class="col-lg-7">
-              <select class="form-control">
-                <option ng-repeat ="l in laboratoires">{{l.name}}</option>
-              </select>
-          </div>
-          <div class="col-lg-2 col-lg-offset-0">
-            <div class="round-button">
-              <div class="round-button-circle">
-                <a  class="round-button" data-toggle="modal" data-target="#labModal">
-                  +
-                </a>
-              </div>
-            </div>
-        </div>
-      </div>
-      <div  id="labModal" class="modal fade">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Ajouter un Nouveau Laboratoire</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <label class="control-label">
-                      Nom du Labo
-                    </label>
-                  </div>
-                  <div class="col-lg-8">
-                    <div>
-                      <input class="form-control" ng-model="labo.nom" type="text">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <label class="control-label">
-                      E-mail du Labo
-                    </label>
-                  </div>
-                  <div class="col-lg-8">
-                    <div>
-                      <input class="form-control" ng-model="labo.email" type="email">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <label class="control-label">
-                      Telephone du Labo
-                    </label>
-                  </div>
-                  <div class="col-lg-8">
-                    <div>
-                      <input class="form-control" ng-model="labo.tel" type="text">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <label class="control-label">
-                      Fax du Labo
-                    </label>
-                  </div>
-                  <div class="col-lg-8">
-                    <div class="">
-                      <input class="form-control" ng-model="labo.fax" type="text">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-lg-4">
-                  <label class="control-label">
-                    Adresse du Labo
-                  </label>
-                </div>
-                <div class="col-lg-8">
-                  <div class="">
-                    <input class="form-control" ng -model="labo.adresse" type="text">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-lg-3">
-        <label class="col-lg-4 control-label" for="liste_labo">Liste des Bureaux d'études : </label>
-      </div>
-      <div class="col-lg-7">
-        <select class="form-control">
-            <option ng-repeat="bet in bets">{{bet.name}}</option>
-        </select>
-      </div>
-      <div class="col-lg-2 col-lg-offset-0">
-        <div class="round-button">
-          <div class="round-button-circle">
-            <a  class="round-button" data-toggle="modal" data-target="#betModal">
-              +
-            </a>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <label class="control-label" for="liste_labo">Societe : </label>
+        </div>
+        <div class="col-lg-7">
+          <select class="form-control">
+            <option ng-repeat ="l in societes">{{l.name_societe}}</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-lg-offset-0">
+          <div class="round-button">
+            <div class="round-button-circle">
+              <a  class="round-button" data-toggle="modal" data-target="#societeModal">
+                +
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div  id="betModal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Ajouter un Nouveau bureau d'etude</h4>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Nom du BET
-                </label>
-              </div>
-              <div class="col-lg-8">
-                <div class="">
-                  <input class="form-control" ng-model="bet.nom" type="text">
-                </div>
-              </div>
-            </div>
-            </div>
-            <div class="form-group">
-          <div class="row">
-            <div class="col-lg-4">
-              <label class="control-label">
-                E-mail du BET
-              </label>
-            </div>
-            <div class="col-lg-8">
-              <div>
-                <input class="form-control" ng-model="bet.email" type="email">
-              </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="control-label" for="liste_labo">Bureau d'études : </label>
+        </div>
+        <div class="col-lg-7">
+          <select class="form-control">
+            <option ng-repeat ="b in bets">{{b.name_bet}}</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-lg-offset-0">
+          <div class="round-button">
+            <div class="round-button-circle">
+              <a  class="round-button" data-toggle="modal" data-target="#betModal">
+                +
+              </a>
             </div>
           </div>
-            </div>
-            <div class="form-group">
-          <div class="row">
-            <div class="col-lg-4">
-              <label class="control-label">
-                Telephone du BET
-              </label>
-            </div>
-            <div class="col-lg-8">
-              <div>
-                <input class="form-control" ng-model="bet.tel" type="text">
-              </div>
-            </div>
-          </div>
-            </div>
-            <div class="form-group">
-          <div class="row">
-            <div class="col-lg-4">
-              <label class="control-label">
-                Fax du BET
-              </label>
-            </div>
-            <div class="col-lg-8">
-              <div class="">
-                <input class="form-control" ng-model="bet.fax" type="text">
-              </div>
-            </div>
-          </div>
-            </div>
-            <div class="form-group">
-          <div class="row">
-            <div class="col-lg-4">
-              <label class="control-label">
-                Adresse du BET
-              </label>
-            </div>
-            <div class="col-lg-8">
-              <div class="">
-                <input class="form-control" ng -model="bet.adresse" type="text">
-              </div>
-            </div>
-          </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
-  </div>
-  </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="control-label" for="liste_labo">Maitre d'ouvrage : </label>
+        </div>
+        <div class="col-lg-7">
+          <select class="form-control">
+            <option ng-repeat ="l in maitres">{{l.name_maitre_ouvrage}}</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-lg-offset-0">
+          <div class="round-button">
+            <div class="round-button-circle">
+              <a  class="round-button" data-toggle="modal" data-target="#maitreModal">
+                +
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="control-label" for="liste_labo">Architecte : </label>
+        </div>
+        <div class="col-lg-7">
+          <select class="form-control">
+            <option ng-repeat ="l in architectes">{{l.name_archi}}</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-lg-offset-0">
+          <div class="round-button">
+            <div class="round-button-circle">
+              <a  class="round-button" data-toggle="modal" data-target="#archModal">
+                +
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>
 </div>
-<div class="form-group">
-  <div class="col-lg-4 control-label">
-    <label for="liste_labo">Liste des Architectes : </label>
-  </div>
-  <div class="col-lg-8">
-   <div class="col-lg-6">
-    <select class="form-control" >
-    <option ng-repeat="arch in architectes">{{arch.name}}</option>
-    </select>
-  </div>
-  <div class="col-lg-1 col-lg-offset-2">
-    <div class="round-button">
-      <div class="round-button-circle">
-        <a  class="round-button" data-toggle="modal" data-target="#archModal">
-          +
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div  id="archModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -518,9 +257,9 @@
                 Nom du Architecte
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div class="">
-                <input class="form-control" ng-model="archi.nom" type="text">
+                <input class="form-control" ng-model="archi.name_archi" type="text">
               </div>
             </div>
           </div>
@@ -532,9 +271,9 @@
                 E-mail du Architecte
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div>
-                <input class="form-control" ng-model="archi.email" type="email">
+                <input class="form-control" ng-model="archi.email_archi" type="email">
               </div>
             </div>
           </div>
@@ -546,9 +285,9 @@
                 Telephone du Architecte
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div>
-                <input class="form-control" ng-model="archi.tel" type="text">
+                <input class="form-control" ng-model="archi.tel_archi" type="text">
               </div>
             </div>
           </div>
@@ -560,9 +299,9 @@
                 Fax du Architecte
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div class="">
-                <input class="form-control" ng-model="archi.fax" type="text">
+                <input class="form-control" ng-model="archi.fax_archi" type="text">
               </div>
             </div>
           </div>
@@ -574,9 +313,9 @@
                 Adresse du Architecte
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div class="">
-                <input class="form-control" ng -model="archi.adresse" type="text">
+                <input class="form-control" ng-model="archi.adresse_archi" type="text">
               </div>
             </div>
           </div>
@@ -584,32 +323,186 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" ng-click="saveArchitect()">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-</div>
-<div class="form-group">
-  <div class="col-lg-4 control-label">
-    <label for="liste_labo">Liste des Sociétés : </label>
-  </div>
-  <div class="col-lg-8">
-   <div class="col-lg-6">
-    <select class="form-control" >
-     <option ng-repeat="soc in societes">{{soc.name}}</option>
-    </select>
-  </div>
-  <div class="col-lg-1 col-lg-offset-2">
-    <div class="round-button">
-      <div class="round-button-circle">
-        <a  class="round-button" data-toggle="modal" data-target="#societeModal">
-          +
-        </a>
+
+<div  id="labModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Ajouter un Nouveau Laboratoire</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                Nom du Labo
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div>
+                <input class="form-control" ng-model="labo.name_labo" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                E-mail du Labo
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div>
+                <input class="form-control" ng-model="labo.email_labo" type="email">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                Telephone du Labo
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div>
+                <input class="form-control" ng-model="labo.tel_labo" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                Fax du Labo
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div class="">
+                <input class="form-control" ng-model="labo.fax_labo" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                Adresse du Labo
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div class="">
+                <input class="form-control" ng-model="labo.adresse_labo" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveLabo()">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+<div  id="betModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Ajouter un Nouveau bureau d'etude</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                Nom du BET
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div class="">
+                <input class="form-control" ng-model="bet.name_bet" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                E-mail du BET
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div>
+                <input class="form-control" ng-model="bet.email_bet" type="email">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                Telephone du BET
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div>
+                <input class="form-control" ng-model="bet.telbet" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                Fax du BET
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div class="">
+                <input class="form-control" ng-model="bet.fax_bet" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="control-label">
+                Adresse du BET
+              </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+              <div class="">
+                <input class="form-control" ng-model="bet.adresse_bet" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveBet()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div  id="societeModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -625,9 +518,9 @@
                 Nom de la societe
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div class="">
-                <input class="form-control" ng-model="soc.nom" type="text">
+                <input class="form-control" ng-model="soc.nom_societe" type="text">
               </div>
             </div>
           </div>
@@ -639,9 +532,9 @@
                 E-mail de la societe
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div>
-                <input class="form-control" ng-model="soc.email" type="email">
+                <input class="form-control" ng-model="soc.email_societe" type="email">
               </div>
             </div>
           </div>
@@ -653,9 +546,9 @@
                 Telephone de la societe
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div>
-                <input class="form-control" ng-model="soc.tel" type="text">
+                <input class="form-control" ng-model="soc.tel_societe" type="text">
               </div>
             </div>
           </div>
@@ -667,9 +560,9 @@
                 Fax de la societe
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div class="">
-                <input class="form-control" ng-model="soc.fax" type="text">
+                <input class="form-control" ng-model="soc.fax_societe" type="text">
               </div>
             </div>
           </div>
@@ -681,9 +574,9 @@
                 Adresse de la societe
               </label>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
               <div class="">
-                <input class="form-control" ng -model="soc.adresse" type="text">
+                <input class="form-control" ng-model="soc.adresse_societe" type="text">
               </div>
             </div>
           </div>
@@ -691,17 +584,95 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" ng-click="saveSociete()">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-</div>
-<div class="form-group">
-  <div class="col-lg-10 col-lg-offset-2">
-    <button type="reset" class="btn btn-default">Annuler</button>
-    <button type="submit" class="btn btn-primary">Enregister</button>
-  </div>
-</fieldset>
-</form>
+
+<div  id="maitreModal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Ajouter un maitre d'ouvrage</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <label class="control-label">
+                        Nom Maitre douvrage
+                      </label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                      <div class="">
+                        <input class="form-control" ng-model="maitre.name_maitre_ouvrage" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <label class="control-label">
+                        Tel Maitre douvrage
+                      </label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                      <div class="">
+                        <input class="form-control" ng-model = "maitre.tel_maitre_ouvrage" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <label class="control-label">
+                        Email Maitre douvrage
+                      </label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                      <div class="">
+                        <input class="form-control" ng-model = "maitre.email_maitre_ouvrage" type="email">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <label class="control-label">
+                        Fax Maitre douvrage
+                      </label>
+                    </div> 
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                      <div class="">
+                        <input class="form-control" ng-model = "maitre.fax_maitre_ouvrage" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <label class="control-label">
+                        Addresse Maitre douvrage
+                      </label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                      <div class="">
+                        <input class="form-control" ng-model = "maitre.adresse_maitre_ouvrage" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="saveMaitre()">Save changes</button>
+              </div>
+            </div>
+          </div>
 </div>
