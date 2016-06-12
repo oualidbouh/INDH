@@ -16,24 +16,34 @@ Route::get('/', function () {
 
 /*GET REQUEST*/
 
-Route::get("/{year}/marches","marchesCtrl@getMarkets");
+Route::get("/markets/{year}/{type}","marchesCtrl@getMarkets");
+
 Route::get("/labos","CollaboratorCtrl@getLabos");
+
 Route::get("/bets","CollaboratorCtrl@getBets");
+
 Route::get("/archs","CollaboratorCtrl@getArchs");
+
 Route::get("/societes","CollaboratorCtrl@getSocietes");
+
 Route::get("/maitres","CollaboratorCtrl@getMaitres");
-Route::get('/bpMarkets',"marchesCtrl@getBpMarkets");
-Route::get('/bgMarkets',"marchesCtrl@getBgMarkets");
-Route::get('/indhMarkets',"marchesCtrl@getIndhMarkets");
-Route::get('/test','marchesCtrl@postMarket');
+
+Route::get("market/{id}/decomptes","marchesCtrl@getDecomptes");
+
+Route::get('/mail','marchesCtrl@sendMail');
 
 /*POST REQUEST*/
 Route::post("/labos","CollaboratorCtrl@postLabos");
 Route::post("/bets","CollaboratorCtrl@postBets");
 Route::post("/archs","CollaboratorCtrl@postArchs");
-Route::post("/societes","CollaboratorCtrl@postSocietes");
+Route::post("/societes","CollaboratorCtrl@postSoc
+	ietes");
 Route::post("/maitres","CollaboratorCtrl@postMaitres");
 
 Route::post('/marche','marchesCtrl@postMarket');
+
+/*        Delete request */
+
+Route::delete("/delete/{id}","marchesCtrl@deleteMarket");
 
 ?>

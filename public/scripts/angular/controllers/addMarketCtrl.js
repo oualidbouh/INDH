@@ -2,7 +2,7 @@
 /*Controller function*/
 app.controller("addMarketCtrl",function($scope,$rootScope,collaborators,$routeParams){
 
-	
+	console.log("type budget ====>"+$scope.type_budget);
 	$scope.laboratoires=[];
 	$scope.architectes=[];
 	$scope.bets= [];

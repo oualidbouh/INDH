@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
+/*Class carbon for timestamp*/
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
-
+use App\Http\Response;
 use App\Http\Requests;
 use App\Marche;
 use App\March_Societe;
+use App\Decomptes;
 
+
+use Mail;
 class marchesCtrl extends Controller
 {
    /* public function getMarkets($year,$type)
@@ -20,27 +23,33 @@ class marchesCtrl extends Controller
 */
     /*BP markets*/
     
-    public function getBpMarkets($year)
+
+    public function getDecomptes($id){
+        return Decomptes::where('marche_id',$id)->get();
+    }
+
+    public function getMarkets($year,$type)
     {
-    	return Marche::all()->where('type_budget','BP')-> where('year',$year."");
+    	//return Marche::all()->where('type_budget',$type)-> where('year',$year."");
+    	$markets = Marche::all();
+    	foreach ($markets as $key) {
+    		var_dump($key->maitre);
+    	}
     }
 
-    /*BG market*/
-     public function getBgMarkets($year)
-     {
-    	return Marche::all()->where('type_budget','BG')-> where('year',$year."");
+    /*Delete function*/
+    public function deleteMarket($id){
+        $m = Marche::find($id);
+        $m->delete();
+        return Response::make('ok',200);
     }
 
-    /*INDH market*/
-     public function getIndhMarkets($year){
-    	return Marche::all()->where('type_budget','INDH')-> where('year',$year."");
-    }
+   /*POST functions*/
 
     public function postMarket(Request $request)
     {
     	$marche = new Marche();
     	$param = $request->all();
-    	return $param;
     	
     	$marche->year = $param['year'];
     	$marche->type_budget = $param['type_budget'];
@@ -61,6 +70,8 @@ class marchesCtrl extends Controller
     	$marche->percentage_financial = 0;
     	$marche->pourcentage_travaux = 0;
     	$marche->save();
+    	
+    	/*jointure Marche_societe*/
     	$id = Marche::all()->last()->march_id;
     	$m_s = new Marche_Societe();
     	$m_s->soc_id = $param['soc_id'];
@@ -68,7 +79,32 @@ class marchesCtrl extends Controller
     	$m_s->save();
     }
 
+
+/*Ajout des decomptes dans la BD*/
+    public function addDecompte($id,Request $req){
+
+        $param = $req->all();
+        $decompte = new Decomptes();
+        $decompte->march_id = $id;
+        $decompte->montant = $param['montant'];
+        $decompte->save();
+
+        return Response::make('ok',200);
+
+    }
+
+    public function sendMail(){
+
+          Mail::raw('teeeest', function($message){
+            $message->to('ilhammzr@gmail.com', 'Oualid Bouh')->subject('Welcome!');
+        });
+          echo "ahchiiii";
+    }
+
 }
+
+
+
 
 
 

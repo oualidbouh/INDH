@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
          $this->call(architecteSeeder::class);
          $this->call(maitreOuvrageSeeder::class);
          $this->call(betSeeder::class);
+         $this->call(DecomptesSeeder::class);
          
     }
 }
