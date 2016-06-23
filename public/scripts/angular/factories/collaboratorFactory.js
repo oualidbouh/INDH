@@ -16,12 +16,15 @@ app.factory('collaborators',function($http){
         getMaitre : function(){
         	return $http.get("/maitres");
         },
-        /******************/
+        getAll:function() {
+            return $http.get("/collaborators/all");
+        },
+        /**********************************************************************/
         postLab : function(obj){
             return $http.post("/labos",obj);
         },
         postArch : function(obj){
-            return $http.post("/archs",obj);
+            return $http.post("/architectes",obj);
         },
         postBET : function(obj){
             return $http.post("/bets",obj);
@@ -30,7 +33,11 @@ app.factory('collaborators',function($http){
             return $http.post("/societes",obj);
         },
         postMaitre : function(obj){
-           return $http.post("/maitres",obj);
+           return $http.post("/maitreOuvrages",obj);
+        },
+        post:function(coll,obj){
+            //coll can only be [bet,societe,maitreOuvrage,architecte,labo]
+            return $http.post("/"+coll+"s",obj);
         }
     };
 });

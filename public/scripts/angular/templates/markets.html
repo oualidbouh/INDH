@@ -1,13 +1,80 @@
+<style type="text/css">
+  #markets :hover tr{
+    cursor: pointer;
+  }
+</style>
+<center><img src="../../../styles/indh.jpg" class="img-responsive img-thumbnail"></center>
+<h2>Liste des marchés </h2>
 
-<table class="table table-hover table-striped table-bordered text-center">
-	<thead>
-		<tr>
-			<th ng-repeat="col in cols track by $index" ng-show="cols[$index]" class="text-center">col{{$index}}</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td ng-repeat="col in cols track by $index" ng-show="cols[$index]">td{{$index}}</td>
-		</tr>
-	</tbody>
-</table>
+
+<div class="dropdown pull-right">
+  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Options
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#/addMarket"><b>Ajouter marché</b></a></li>
+      <li><a href="#/markets"><b>Imprimer marches</b></a></li>
+      <li class="divider"></li>
+      <li><a href="#/"><b>Retour</b></a></li>
+    </ul>
+  </div>
+
+  <div class="dropdown" style="float : left">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Colonnes
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu" style="padding:3px">
+        <li><input type="checkbox" ng-model="lab" class="text-center"> Laboratoire<br></li>
+        <li><input type="checkbox" ng-model="dop">date Ouverture des Plis<br></li>
+        <li><input type="checkbox" ng-model="ddt">date debut de travaux<br></li>
+        <li><input type="checkbox" ng-model="dft">date fin de travaux  <br></li>
+        <li><input type="checkbox" ng-model="bet">BET<br></li>
+        <li><input type="checkbox" ng-model="soc">société<br></li>
+        <li><input type="checkbox" ng-model="arch">Architecte<br></li>
+      </ul>
+    </div>
+    <br>
+    <br>
+    <div >
+
+      <table id="markets" class="table table-bordered table-striped table-hovered">
+        <thead>
+          <tr>
+            <th class="text-center">OBJET</th>
+            <th class="text-center">MAITRE D'OUVRAGE</th>
+
+            <th ng-show = "lab" class="text-center"> LABORATOIRE </th>
+            <th ng-show = "dop" class="text-center">DATE OUVERTURE PLIS</th>
+            <th ng-show = "ddt" class="text-center">DATE DEBUT TRAVAUX</th>
+            <th ng-show = "dft" class="text-center">DATE FIN TRAVAUX </th>
+            <th ng-show = "bet" class="text-center">BET</th>
+            <th class="text-center">% FINANCIER</th>
+            <th class="text-center">% TRAVAUX</th>
+            <th ng-show = "soc" class="text-center">SOCIETE</th>
+            <th ng-show = "arch" class="text-center">ARCHITECTE</th>
+            <th  class="text-center">MONTANT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="market in markets track by $index"  
+          ng-click="clickTR($index)" 
+          ng-class="{'danger':market.etat == 0,'success':market.etat == 1}"
+          ng-mouseover="m = 1" ng-mouseleave="m=0">
+          <td  class="text-center">{{market.objet}}</td>
+          <td  class="text-center">{{market.maitreOuvrage.name_maitre_ouvrage}}</td>
+
+          <td ng-show="lab" class="text-center">{{market.labo.name_labo}}</td>
+          <td ng-show="dop" class="text-center">{{market.date_ouverture_plis}}</td>
+          <td ng-show="ddt" class="text-center">{{market.date_debut_travaux}}</td>
+          <td ng-show="dft" class="text-center">{{market.date_fin_travaux}}</td>
+          <td ng-show="bet" class="text-center">{{market.bet.name_bet}}</td>
+          <td class="text-center">{{market.pourcentage_financier}}%</td>
+          <td  class="text-center">{{market.pourcentage_travaux}}%</td>
+          <td ng-show="soc" class="text-center">{{market.societe.name_societe}}</td>
+          <td ng-show="arch" class="text-center">{{market.architecte.name_architecte}}</td>
+          <td  class="text-center">
+            {{market.montant}}
+            <span ng-show="m" class="close pull-right" ng-click="deleteMarket($index);$event.stopPropagation()">&times;</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

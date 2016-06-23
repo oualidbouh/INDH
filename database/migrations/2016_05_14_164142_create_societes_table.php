@@ -13,7 +13,7 @@ class CreateSocietesTable extends Migration
     public function up()
     {
         Schema::create('societes', function (Blueprint $table) {
-            $table->increments('societe_id');
+            $table->increments('id');
             $table->string('name_societe');
             $table->string('tel_societe');
             $table->string('fax_societe');

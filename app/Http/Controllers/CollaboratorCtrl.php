@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -7,7 +8,7 @@ use App\Laboratoire;
 use App\Architecte;
 use App\BET;
 use App\Societe;
-
+use Mail;
 class CollaboratorCtrl extends Controller
 {
 
@@ -38,19 +39,28 @@ class CollaboratorCtrl extends Controller
        return Maitre_ouvrage::all();
     }
 
-
+    public function getAll()
+    {
+        return array(
+            "labos" =>  $this->getLabos(),
+            "architectes" =>  $this->getArchs(),
+            "bets" =>  $this->getBets(),
+            "maitreOuvrages" =>  $this->getMaitres(),
+            "societes" => $this->getSocietes()
+            );
+    }
     // POST METHODS
     public function postLabos(Request $request)
     {
         $param = $request->all();
         $labo = new Laboratoire();
+        
         $labo->name_labo = $param['name_labo'];
         $labo->tel_labo = $param['tel_labo'];
         $labo->fax_labo = $param['fax_labo'];
         $labo->email_labo = $param['email_labo'];
         $labo->adresse_labo = $param['adresse_labo'];
         $labo->save();
-        /*dans le formualire d'ajout on doit ajouter le labo saisi à la liste donc nous allons le retourner*/
         return Laboratoire::all()->last();
 
     }
@@ -72,13 +82,14 @@ class CollaboratorCtrl extends Controller
     {
         $param = $request->all();
         $arc = new Architecte();
+       // var_dump($param);
         $arc->name_archi = $param['name_archi'];
         $arc->tel_archi = $param['tel_archi'];
         $arc->fax_archi = $param['fax_archi'];
         $arc->email_archi = $param['email_archi'];
         $arc->adresse_archi = $param['adresse_archi'];
         $arc->save();
-        return Architecture::all()->last();
+        return Architecte::all()->last();
     }
 
 
@@ -100,6 +111,7 @@ class CollaboratorCtrl extends Controller
     {
         $param = $request->all();
         $maitre = new Maitre_ouvrage();
+        
         $maitre->name_maitre_ouvrage = $param['name_maitre_ouvrage'];
         $maitre->tel_maitre_ouvrage = $param['tel_maitre_ouvrage'];
         $maitre->fax_maitre_ouvrage = $param['fax_maitre_ouvrage'];
@@ -107,5 +119,23 @@ class CollaboratorCtrl extends Controller
         $maitre->adresse_maitre_ouvrage = $param['adresse_maitre_ouvrage'];
         $maitre->save();
         return Maitre_ouvrage::all()->last();
+    }
+
+/*envoie des mails au collaborateurs */
+
+    public function sendMail(Request $request){
+
+        $param = $request->all();
+        var_dump($param);
+        /*$data = array(
+                        "objet" => $param['objet'],
+                        "message" => $param['message'],
+                        "email_dest" => $param['destination'],
+                        "name_dest" => $param['name']
+                );
+
+        Mail::raw($data['message'], function($message) use ($data){
+            $message->to($data['email_dest'],$data['name_dest'])->subject($data['objet']);
+        });*/
     }
 }

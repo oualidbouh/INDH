@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMaitreOuvrageTable extends Migration
+class CreateMaitreOeuvresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMaitreOuvrageTable extends Migration
     public function up()
     {
         Schema::create('maitre_ouvrages', function (Blueprint $table) {
-            $table->increments('maitre_ouvrage_id');
+            $table->increments('id');
             $table->string('name_maitre_ouvrage');
             $table->string('tel_maitre_ouvrage');
             $table->string('fax_maitre_ouvrage');
@@ -30,6 +30,6 @@ class CreateMaitreOuvrageTable extends Migration
      */
     public function down()
     {
-         Schema::drop('maitre_ouvrages');
+        Schema::drop('maitre_ouvrages');
     }
 }

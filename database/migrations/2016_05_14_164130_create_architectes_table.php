@@ -13,7 +13,7 @@ class CreateArchitectesTable extends Migration
     public function up()
     {
         Schema::create('architectes', function (Blueprint $table) {
-            $table->increments('archi_id');
+            $table->increments('id');
             $table->string('name_archi');
             $table->string('tel_archi');
             $table->string('fax_archi');

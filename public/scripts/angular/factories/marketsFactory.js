@@ -1,13 +1,22 @@
-app.factory('Markets',function($http){
+app.factory('marketsFactory',function($http){
 	return {
-		getAllBp : function (){
-			return $http.get('bpMarkets');
+		getMarkets:function (year,type) {
+			return $http.get("/markets/"+year+"/"+type);
 		},
-		getAllBg : function(){
-			return $http.get('bgMarkets');
+		postMarket:function(market){
+			return $http.post("/marche",market);
 		},
-		getAllIndh : function(){
-			return $http.get('indhMarket');
-		}
+		updateMarket:function(market) {
+			return $http.put("/market/"+market.id,market);
+		},
+        deleteDecompte:function(id){
+            return $http.delete("/decompte/delete/"+id);
+        },
+        deleteAvenant:function(id){
+            return $http.delete("/avenant/delete/"+id);
+        },
+        deleteMarket:function(id){
+            return $http.delete("market/delete/"+id);
+        }
 	}
 })

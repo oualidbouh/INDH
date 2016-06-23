@@ -13,9 +13,9 @@ class CreateDecomptesTable extends Migration
     public function up()
     {
         Schema::create('decomptes', function (Blueprint $table) {
-            $table->increments('decompte_id');
+            $table->increments('id');
             $table->integer('marche_id');
-            $table->float('montant');
+            $table->float("montant");
             $table->timestamps();
         });
     }

@@ -1,18 +1,22 @@
  <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-md-3 col-sm-4">
         <div class="years">
             <div class="list-group">
-                <a href="#/" ng-click='select($index)' ng-repeat="year in years" 
+                <a href="#/" ng-click='selectYear($index)' ng-repeat="year in years" 
                 class="list-group-item text-center {{year.active}}"><b>{{year.year}}</b></a>
             </div>
+            <br>
         </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9 col-md-9 col-sm-8">
         <div class="types">
+         <center><img src="../../../styles/indh.jpg" class="img-responsive img-thumbnail" ></center>
+            <br>
             <div class="list-group">
-                <a href="#/bp" class="list-group-item"><b>Budget Prefectoral</b></a>
-                <a href="#/bg" class="list-group-item"><b>Budgetl Genera</b></a>
-                <a href="#/indh" class="list-group-item"><b>INDH</b></a>
+                <a href="#/markets" ng-click="selectBudget('BP')" class="list-group-item"><b>Budget Prefectoral</b></a>
+                <a href="#/markets" ng-click="selectBudget('BG')" class="list-group-item"><b>Budget General</b></a>
+                <a href="#/markets" ng-click="selectBudget('INDH')" class="list-group-item"><b>INDH</b></a>
+                <a href="#/markets" ng-click="selectBudget('BDC')" class="list-group-item"><b>Bon de commandes</b></a>
             </div>
         </div>
     </div>

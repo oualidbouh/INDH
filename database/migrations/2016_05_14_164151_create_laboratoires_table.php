@@ -13,7 +13,7 @@ class CreateLaboratoiresTable extends Migration
     public function up()
     {
         Schema::create('laboratoires', function (Blueprint $table) {
-            $table->increments('labo_id');
+            $table->increments('id');
             $table->string('name_labo');
             $table->string('tel_labo');
             $table->string('fax_labo');

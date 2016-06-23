@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
          $this->call(architecteSeeder::class);
          $this->call(maitreOuvrageSeeder::class);
          $this->call(betSeeder::class);
-         $this->call(DecomptesSeeder::class);
-         
+         $this->call(laboratoireSeeder::class);
+         $this->call(marcheSeeder::class);
+         $this->call(decomptesSeeder::class);
+         $this->call(AvenantSeeder::class);
     }
 }

@@ -13,7 +13,7 @@ class CreateBETsTable extends Migration
     public function up()
     {
         Schema::create('b_e_t_s', function (Blueprint $table) {
-            $table->increments('bet_id');
+            $table->increments('id');
             $table->string('name_bet');
             $table->string('tel_bet');
             $table->string('fax_bet');

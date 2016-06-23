@@ -1,0 +1,55 @@
+<center><img src="../../../styles/indh.jpg" class="img-responsive img-thumbnail" ></center>
+<h2>
+Images du marché
+
+  <div class="dropdown pull-right">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Options
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href=""  ng-click="add()"><b>Ajouter</b></a></li>
+      <li><a href=""  ng-click="delete()"><b>Supprimer</b></a></li>
+      <li class="divider"></li>
+      <li><a href="" onclick='window.history.back()'><b>Retour</a></li>
+    </ul>
+  </div>
+</div>
+
+</h2>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="i in images">
+          <a href="#/images" ng-click="selectImage($index)">
+            <img ng-src="{{i.src}}" data-toggle="modal" data-target="#mod" class="thumbnail img-responsive" />
+            
+          </a>
+        </div>
+      </div>
+</div>
+<div class="modal fade" role="dialog" id="mod" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="image-gallery-title">12:45</h4>
+            </div>
+            <div class="modal-body">
+                <img id="image-gallery-image" class="img-thumbnail img-responsive" src="{{images[selectedImageIndex].src}}">
+            </div>
+            <div class="modal-footer">
+
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary" id="show-previous-image" ng-click="prev()" ng-hide="p">Previous</button>
+                </div>
+
+                <div class="col-md-8 text-center" id="image-gallery-caption">
+                    
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="show-next-image" class="btn btn-default" ng-click='next()' ng-hide="n">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -126,6 +126,9 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        //Vsmoraes\Pdf\PdfServiceProvider::class,
+        //Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -170,7 +173,9 @@ return [
     */
 
     'aliases' => [
-
+        //'PDF' => Vsmoraes\Pdf\PdfFacade::class,
+        //'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

@@ -1,0 +1,753 @@
+<center><img src="../../../styles/indh.jpg" class="img-responsive img-thumbnail" ></center>
+<h2>detail du marché </h2>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div>
+   <h3>type du marché : {{budgetType}}
+    
+
+  <div class="dropdown pull-right">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="" ng-hide="edit" ng-click="editMarket()"><b>Modifier les données du marché</b></a></li>
+      <li><a href="" ng-show="edit" ng-click="editMarket()"><b>Sauvegardez les données du marché</b></a></li>
+      <li><a href="" ng-click="printMarket()"><b>Imprimer le marché</b></a></li>
+      <li><a href="" data-toggle="modal" data-target="#mailModal"><b>Envoyer mail</b></a></li>
+      <li class="divider"></li>
+      <li><a href="" onclick='window.history.back()'><b>Retour</a></li>
+    </ul>
+  </div>
+</div>
+</h3>
+
+
+   <table class="table table-bordered table-hover table-striped marketDetails">
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Objet du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6"> 
+            <b>
+                <span ng-hide="edit">{{market.objet}}</span>
+                <span ng-show="edit"><input class="form-control" type="text" value="{{market.objet}}" ng-model="market.objet"></span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Montant du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6">
+            <b>
+            <span ng-hide="edit">{{market.montant}}</span>
+            <span ng-show="edit"><input class="form-control" type="text" value="{{market.montant}}" ng-model="market.montant"></span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Date d'ouverture des plis concernants le marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6">
+            <b>
+               <span ng-hide="edit">{{market.date_ouverture_plis}}</span>
+               <span ng-show="edit" id="date1">
+               <input type="text" ng-model="market.date_ouverture_plis" value="{{market.date_ouverture_plis}}" class="form-control">
+               </span>
+               <script type="text/javascript">
+                  $(function () {
+                  	$('#date1 input').datepicker({
+                  		autoclose: true,
+                  		todayHighlight: true,
+                  		format:"dd-mm-yyyy"
+                  	});
+                  });
+               </script>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Date debut des travaux :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6">
+            <b>
+               <span ng-hide="edit">{{market.date_debut_travaux}}</span>
+               <span ng-show="edit" id="date2">
+                  <input type="text" ng-model="market.date_debut_travaux" value="{{market.date_debut_travaux}}" class="form-control">
+                  <script type="text/javascript">
+                     $(function () {
+                     	$('#date2 input').datepicker({
+                     		autoclose: true,
+                     		todayHighlight: true,
+                     		format:"yyyy-mm-dd"
+                     	});
+                     });
+                  </script>
+               </span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Date fin des travaux :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6">
+            <b>
+               <span ng-hide="edit">{{market.date_fin_travaux}}</span>
+               <span ng-show="edit" id="date3">
+                  <input type="text" ng-model="market.date_fin_travaux" value="{{market.date_fin_travaux}}" class="form-control">
+                  <script type="text/javascript">
+                     $(function () {
+                     	$('#date3 input').datepicker({
+                     		autoclose: true,
+                     		todayHighlight: true,
+                     		format:"yyyy-mm-dd"
+                     	});
+                     });
+                  </script>
+               </span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Laboratoire en charge du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6" style="padding: 0px;">
+            <b>
+               <span ng-hide="edit">{{market.labo.name_labo}}</span>
+               <span ng-show="edit" class="row form-group">
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                     <select class="form-control" ng-model="market.labo.name_labo" ng-change="setLab()" onchange="labIndex = this.selectedIndex">
+                        <option ng-repeat="lab in collaborators.labos" >{{lab.name_labo}}</option>
+                     </select>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+                     <a class="btn btn-info " style="border-radius:50%;" data-toggle="modal" data-target="#laboModal"><b>+</b></a>
+                  </div>
+               </span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Societes en charge du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6" style="padding: 0px;">
+            <b>
+            <span ng-hide="edit">{{market.societe.name_societe}}</span>
+            <span ng-show="edit" class="row form-group">
+               <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                  <select ng-model="market.societe.name_societe" class="form-control" ng-change="setSociete()" onchange="societeIndex = this.selectedIndex">
+                     <option ng-repeat="soc in collaborators.societes" >{{soc.name_societe}}</option>
+                  </select>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <a class="btn btn-info " style="border-radius:50%;" data-toggle="modal" data-target="#societeModal"><b>+</a>
+               </div>
+            </span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Bureau des études:</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6">
+            <b>
+            <span ng-hide="edit">{{market.bet.name_bet}}</span>
+            <span ng-show="edit" class="row form-group">
+               <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                  <select ng-model="market.bet.name_bet" class="form-control" ng-change="setBet()" onchange="betIndex = this.selectedIndex">
+                     <option ng-repeat="bet in collaborators.bets" >{{bet.name_bet}}</option>
+                  </select>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <a class="btn btn-info " style="border-radius:50%;" data-toggle="modal" data-target="#betModal"><b>+</a>
+               </div>
+            </span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Architecte chargé du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6">
+            <b>
+            <span ng-hide="edit">{{market.architecte.name_archi}}</span>
+            <span ng-show="edit" class="row form-group">
+               <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                  <select ng-model="market.architecte.name_archi" class="form-control" ng-change="setArch()" onchange="archIndex = this.selectedIndex">
+                     <option ng-repeat="arch in collaborators.architectes" >{{arch.name_archi}}</option>
+                  </select>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <a class="btn btn-info " style="border-radius:50%;" data-toggle="modal" data-target="#architecteModal"><b>+</a>
+               </div>
+            </span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Maitre d'ouvrage du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6">
+            <b>
+            <span ng-hide="edit">{{market.maitreOuvrage.name_maitre_ouvrage}}</span>
+            <span ng-show="edit" class="row form-group">
+               <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                  <select ng-model="market.maitreOuvrage.name_maitre_ouvrage" class="form-control" ng-change="setMaitre()" onchange="maitreIndex = this.selectedIndex">
+                     <option ng-repeat="m in collaborators.maitreOuvrages" >{{m.name_maitre_ouvrage}}</option>
+                  </select>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <a class="btn btn-info " style="border-radius:50%;" data-toggle="modal" data-target="#maitreOuvrageModal"><b>+</a>
+               </div>
+            </span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Pourcentage financier du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>{{market.pourcentage_financier}}%</b></td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Pourcentage des avancement ds travaux du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6">
+            <b>
+            <span ng-hide="edit" >{{market.pourcentage_travaux}}%</span>
+            <span ng-show="edit" class="form-group">
+            <input type="text" class="form-control" ng-model="market.pourcentage_travaux" value="{{market.pourcentage_travaux}}">
+            </span>
+            </b>
+         </td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Somme des decomptes du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>{{market.somme_decomptes}}</b></td>
+      </tr>
+      <tr class="row text-center" >
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>Somme des avenants du marché :</b></td>
+         <td class="col-lg-6 col-md-6 col-sm-6"> <b>{{market.somme_avenants}}</b></td>
+      </tr>
+   </table>
+   <hr>
+   <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+         <h4>Liste des decomptes</h4>
+          <table id="myTable" class="table table-fixedheader  table-striped">
+            <thead>
+                <tr>
+                    <th width="50%" class="text-center"><b>Montant</b></th>
+                    <th width="50%" class="text-center"><b>Date</b></th>
+                </tr>
+            </thead>
+            <tbody style="height:200px">
+                    <tr ng-repeat="d in market.decomptes" class="text-center" ng-mouseover="x=true" ng-mouseleave="x = false">
+                       <td width="50%"><b>{{d.montant}}</b></td>
+                       <td width="50%">
+                           <b>{{d.created_at}}</b>
+                           <span ng-show="x" class="close pull-right" ng-click="deleteDecompte($index)">&times;</span>
+                       </td>
+                    </tr>
+                    <tr class="text-center">
+                       <td width="50%">
+                          <input class="form-control" placeholder="montant du nouveau decompte" ng-enter="addDecompte()" name="m" type="number" ng-model="montant">
+                       </td>
+                       <td width="50%"><a class="btn btn-info btn-block" ng-click="addDecompte()"><b>ajouter decompte</b></a></td>
+                    </tr> 
+            </tbody>
+        </table>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+         <h4>Liste des avenants</h4>
+         <table class="table table-fixedheader table-striped">
+            <thead >
+               <th width="33%" class="text-center">Objet</th>
+               <th width="33%" class="text-center">Montant</th>
+               <th width="33%" class="text-center">Date</th>
+            </thead>
+             <tbody style="height:200px">
+                <tr ng-repeat="a in market.avenants" class="text-center" ng-mouseover="y=true" ng-mouseleave="y = false">
+                   <td width="33%"><b>{{a.objet}}</b></td>
+                   <td width="33%"><b>{{a.montant}}</b></td>
+                   <td width="33%">
+                       <b>{{a.created_at}}</b>
+                       <span ng-show="y" class="close pull-right" ng-click="deleteAvenant($index)">&times;</span>
+                   </td>
+                </tr>
+                <tr class="text-center">
+                   <td width="33%"><input class="form-control" placeholder="objet du nouveau avenant" type="text"  ng-model="avenant.objet"></td>
+                   <td width="33%"><input class="form-control" placeholder="montant du nouveau avenant" ng-enter="addAvenant()" type="number"  ng-model="avenant.montant"></td>
+                   <td width="33%"><a class="btn btn-warning btn-block" ng-click="addAvenant()"><b>ajouter avenant</b></a></td>
+                </tr>
+             </tbody>
+         </table>
+      </div>
+   </div>
+    <a href="#/images"><b>Consulter les images du marché courrant</b></a>
+</div>
+
+<div class="modal fade" role="dialog" id="mailModal" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="image-gallery-title">12:45</h4>
+            </div>
+            <div class="modal-body">
+                <form >
+                  <div class="form-group">
+                  <select ng-model="dest" class="form-control">
+                    <option value="{{market.architecte}}">Architecte : {{market.architecte.email_archi}}</option>
+                    <option value="{{market.societe}}">Société : {{market.societe.email_societe}}</option>
+                    <option value="{{market.bet}}">BET : {{market.bet.email_bet}}</option>
+                    <option value="{{market.maitreOuvrage}}">Maitre d'ouvrages : {{market.maitreOuvrage.email_maitre_ouvrage}}</option>
+                    <option value="{{market.labo}}">Laboratoire : {{market.labo.email_labo}}</option>
+                  </select>
+                    <input placeholder="Objet du mail" class="form-control" ng-model="mail.object">
+                    <textarea placeholder="Message..." rows="10" class="form-control" ng-model="mail.message" style="resize:none">
+                      
+                    </textarea>
+                  </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <div class="pull-right form-group">
+                  <button class="btn btn-success" ng-click="sendMail()">Envoyer</button>
+                  <button class="btn btn-danger"  ng-click="cancelMail()">Annuler</button>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div  id="laboModal" class="modal fade">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Ajouter un Nouveau Laboratoire</h4>
+         </div>
+         <div class="modal-body">
+            <form name="labForm">
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Nom du Labo
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" ng-class="{'has-error' : labForm.labName.$invalid}">
+                        <div>
+                           <input class="form-control" name="labName" ng-pattern="/^[a-zA-Z]+$/" ng-model="labo.name_labo" type="text" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        E-mail du Labo
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error' : labForm.email.$invalid}">
+                           <input class="form-control" name="email"  ng-model="labo.email_labo" type="email" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Telephone du Labo
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error' : labForm.tel.$invalid}">
+                           <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-model="labo.tel_labo" type="tel" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Fax du Labo
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':labForm.fax.$invalid}">
+                           <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-model="labo.fax_labo" type="tel" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Adresse du Labo
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':labForm.address.$invalid}">
+                           <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-model="labo.adresse_labo" type="text" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" ng-click="saveCollaborator('labo')" ng-disabled="labForm.$invalid">Save changes</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<div  id="societeModal" class="modal fade">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Ajouter une Nouvelle societe</h4>
+         </div>
+         <div class="modal-body">
+            <form name="societeForm" novalidate>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Nom de la societe
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':societeForm.nom.$invalid}">
+                           <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="societe.name_societe" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        E-mail de la societe
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':societeForm.email.$invalid}">
+                           <input class="form-control" name="email" ng-required ng-model="societe.email_societe" type="email">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Telephone de la societe
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':societeForm.tel.$invalid}">
+                           <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="societe.tel_societe" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Fax de la societe
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':societeForm.fax.$invalid}">
+                           <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="societe.fax_societe" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Adresse de la societe
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':societeForm.address.$invalid}">
+                           <input class="form-control" name="address" ng-minleength="10" ng-maxlength="100" ng-model="societe.adresse_societe" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" ng-disabled="societeForm.$invalid" ng-click="saveCollaborator('societe')">Save changes</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<div  id="betModal" class="modal fade">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Ajouter un Nouveau bureau d'etude</h4>
+         </div>
+         <div class="modal-body">
+            <form name="betForm">
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Nom du BET
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':betForm.nom.$invalid}">
+                           <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="bet.name_bet" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        E-mail du BET
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':betForm.email.$invalid}">
+                           <input class="form-control" name="email" ng-required ng-model="bet.email_bet" type="email">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Telephone du BET
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':betForm.tel.$invalid}">
+                           <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="bet.tel_bet" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Fax du BET
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':betForm.fax.$invalid}">
+                           <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="bet.fax_bet" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Adresse du BET
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':betForm.address.$invalid}">
+                           <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="bet.adresse_bet" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" ng-click="saveCollaborator('bet')" ng-disabled="betForm.$invalid">Save changes</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<div  id="maitreOuvrageModal" class="modal fade">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Ajouter un maitre d'ouvrage</h4>
+         </div>
+         <div class="modal-body">
+            <form name="maitreForm">
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Nom Maitre douvrage
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error' : maitreForm.nom.$invalid}">
+                           <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model=" maitreOuvrage.name_maitre_ouvrage" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Email Maitre douvrage
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error' : maitreForm.email.$invalid}">
+                           <input class="form-control" name="email" ng-required ng-model = " maitreOuvrage.email_maitre_ouvrage" type="email">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Tel Maitre douvrage
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error' : maitreForm.tel.$invalid}">
+                           <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model = " maitreOuvrage.tel_maitre_ouvrage" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Fax Maitre douvrage
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error' : maitreForm.fax.$invalid}">
+                           <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model = " maitreOuvrage.fax_maitre_ouvrage" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Addresse Maitre douvrage
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error' : maitreForm.address.$invalid}">
+                           <input class="form-control" 
+                              name="address" 
+                              ng-minlength="10" 
+                              ng-maxength="100" 
+                              ng-required ng-model = " maitreOuvrage.adresse_maitre_ouvrage" 
+                              type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" ng-disabled="maitreForm.$invalid" ng-click="saveCollaborator('maitreOuvrage')">Save changes</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<div  id="architecteModal" class="modal fade">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Ajouter un Nouveau architecte</h4>
+         </div>
+         <div class="modal-body">
+            <form name="archForm" novalidate>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Nom du Architecte
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':archForm.nom.$invalid}">
+                           <input name="nom" class="form-control" ng-pattern="/^[a-zA-Z]+$/" ng-model="architecte.name_archi" type="text" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        E-mail du Architecte
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':archForm.email.$invalid}">
+                           <input class="form-control" name="email" ng-model="architecte.email_archi" type="email" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Telephone de l'architecte
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':archForm.tel.$invalid}">
+                           <input class="form-control" name="tel" ng-model="architecte.tel_archi" type="tel" ng-pattern="/^[0-9]{10}$/" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Fax du Architecte
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':archForm.fax.$invalid}">
+                           <input class="form-control" name="fax" ng-model="architecte.fax_archi" type="tel" ng-pattern="/^[0-9]{10}$/" ng-required>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        Adresse du Architecte
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':archForm.address.$invalid}">
+                           <input class="form-control" ng-maxlength="100" ng-minlength="10" ng-required name="address" ng-model="architecte.adresse_archi" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" ng-click="saveCollaborator('architecte')" ng-disabled="archForm.$invalid">Save changes</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
