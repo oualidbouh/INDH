@@ -1,29 +1,35 @@
+
 <center><img src="../../../styles/indh.jpg" class="img-responsive img-thumbnail" ></center>
 <h2>
-Images du marché
+    Images du marché
 
-  <div class="dropdown pull-right">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Options
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href=""  ng-click="add()"><b>Ajouter</b></a></li>
-      <li><a href=""  ng-click="delete()"><b>Supprimer</b></a></li>
-      <li class="divider"></li>
-      <li><a href="" onclick='window.history.back()'><b>Retour</a></li>
-    </ul>
+    <div class="dropdown pull-right">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Options
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href=""  data-toggle="modal" data-target="#uploadModal" ><i class="glyphicon glyphicon-plus"></i>&nbsp;<b>Ajouter</b></a></li>
+              <li><a href="" onclick='window.history.back();' ng-click="$flow.cancel()"><i class="glyphicon glyphicon-log-out"></i>&nbsp;<b>Retour</a></li>
+          </ul>
+      </div>
   </div>
+</h2>
+<div ng-show="noImages" class="alert alert-warning">
+  <b>Ce marchée n'a pas encore des images , [options-> ajouter] pour charger les images correspondant à ce marché</b>
 </div>
 
-</h2>
 <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="i in images">
-          <a href="#/images" ng-click="selectImage($index)">
-            <img ng-src="{{i.src}}" data-toggle="modal" data-target="#mod" class="thumbnail img-responsive" />
-            
-          </a>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="i in images">
+        <a href="#/images" ng-click="selectImage($index)">
+            <img src="{{i.src}}" data-toggle="modal" data-target="#mod" style="width: 100%;" class="thumbnail img-responsive" />
+        </a>
+    </div>
+    <div class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="file in $flow.files">
+        <a href="#/images" ng-click="selectFlowImage($index)">
+            <img  flow-img="$flow.files[$index]" data-toggle="modal" style="width: 100%;" data-target="#mod" class="thumbnail img-responsive" />
+        </a>
+    </div>
+</div>
 </div>
 <div class="modal fade" role="dialog" id="mod" >
     <div class="modal-dialog">
@@ -31,25 +37,93 @@ Images du marché
             <div class="modal-header">
 
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="image-gallery-title">12:45</h4>
+                <h4 ng-show="!flow_selected" class="modal-title text-center" id="image-gallery-title">{{images[selectedImageIndex]. date}}
+                </h4>
+
+                <h4 ng-show="flow_selected" class="modal-title text-center" id="image-gallery-title">{{getTime()|date:"dd/MM/yyyy hh:mm:ss a"}}</h4>
             </div>
             <div class="modal-body">
-                <img id="image-gallery-image" class="img-thumbnail img-responsive" src="{{images[selectedImageIndex].src}}">
+                <center>
+                    <div style="width:100%">
+                        <img id="image-gallery-image" ng-show="!flow_selected" class="img-thumbnail img-responsive"  src="{{images[selectedImageIndex].src}}" >
+                    </div>
+                    <div style="width:100%">
+                        <img id="image-gallery-image" ng-show="flow_selected" class="img-thumbnail img-responsive" flow-img="$flow.files[selectedFlowImageIndex]" >
+                    </div>
+                </center>
             </div>
+            
             <div class="modal-footer">
 
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-primary" id="show-previous-image" ng-click="prev()" ng-hide="p">Previous</button>
+                <div class="for-group">
+                    <button class="btn btn-danger pull-right" data-target="#confirmModal" data-toggle="modal">Supprimer</button>
                 </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
 
-                <div class="col-md-8 text-center" id="image-gallery-caption">
+<div class="modal fade" role="dialog" id="uploadModal" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <center><h4 class="modal-title" id="image-gallery-title">Charger vos images</h4></center>
+            </div>
+            <div class="modal-body" flow-files-submitted="adjustNames($flow.files)"  >
+                <div class="center-block" style="margin-bottom: 10px">
+                    <span class="btn btn-danger pull-right" ng-click="$flow.cancel()" ng-disabled="$flow.files.length==0">
+                        supprimer tout
+                    </span>
+                    <span class="btn btn-default" flow-btn flow-attrs="{accept:'image/*'}">
+                        chargez vos images
+                    </span>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading text-uppercase text-center text-danger"> Images </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                          <div class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="file in $flow.files">
+                                    <a href="#/images"> 
+                                     <img class="img-responsive img-thumbnail" flow-img="$flow.files[$index]"/>
+                                    </a>
+                                    <br><br>
+                                        <div class="btn-group btn-group-justified">
+                                          <a href="" class="btn btn-danger" ng-click="file.cancel()"><i class="glyphicon glyphicon-trash"></i></a>
+                                      </div>
+                                      <div class="progress progress-striped" ng-class="{active: file.isUploading()}" style=" margin-top: 5px">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}" >
+                                        </div>
+                                      </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="modal-footer">
+
+                <div class="form-group">
+                    <button class="btn btn-danger pull-left" data-dismiss="modal" ng-click="$flow.cancel()">Annuler</button>
+                    <button class="btn btn-info pull-right" ng-click='$flow.upload()' ng-disabled="$flow.files.length==0">Upload tout</button>
                     
-                </div>
-
-                <div class="col-md-2">
-                    <button type="button" id="show-next-image" class="btn btn-default" ng-click='next()' ng-hide="n">Next</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="modal" id="confirmModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center"><b>Confirmation de la suppression </b></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" ng-click = "deleteImage()">Supprimer</button>
+      </div>
+    </div>
+  </div>
 </div>

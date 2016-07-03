@@ -1,11 +1,15 @@
 
-var app = angular.module("indh",["ngRoute"]);
+var app = angular.module("indh",["ngRoute","flow"]);
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider
 
-        .when("/",{
+        .when("/home",{
            	controller:"homeCtrl",
             templateUrl:"scripts/angular/templates/home.html"
+        })
+        .when("/login",{
+            controller:"loginCtrl",
+            templateUrl:"scripts/angular/templates/login.html"
         })
         .when("/markets",{
         	controller:"marketsCtrl",
@@ -23,7 +27,11 @@ app.config(function($routeProvider, $locationProvider) {
             controller:"imagesCtrl",
             templateUrl:"scripts/angular/templates/marketImages.html"
         })
-        .otherwise({redirectTo : "/"});
+        .when("/config",{
+            controller:"configCtrl",
+            templateUrl:"scripts/angular/templates/config.html"
+        })
+        .otherwise({redirectTo : "/login"});
 
         
 });

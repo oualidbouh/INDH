@@ -1,7 +1,25 @@
 
-app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$filter,collaborators,marketsFactory) {
+app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$filter,collaborators,marketsFactory,authService) {
+	toastr.options = {
+  						"closeButton": true,
+  						"debug": false,
+  						"newestOnTop": false,
+  						"progressBar": true,
+  						"positionClass": "toast-bottom-full-width",
+  						"preventDuplicates": false,
+  						"onclick": null,
+  						"showDuration": "5",
+  						"hideDuration": "1000",
+  						"timeOut": "5000",
+  						"extendedTimeOut": "1000",
+  						"showEasing": "swing",
+  						"hideEasing": "linear",
+  						"showMethod": "fadeIn",
+  						"hideMethod": "fadeOut"
+					}
 	$scope.montant = "";
 	$scope.avenant ="";
+	$scope.error = {};
 		if($rootScope.year == undefined && $rootScope.budgetType == undefined){
 			$location.path("/");
 		}else{
@@ -11,7 +29,9 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 							$rootScope.market.decomptes = res;
 						})
 						.error(function () {
-							alert('error')
+							//alert('error');
+							$scope.error.message = "Erreur lors du chargement des decomptes !";
+							$("#errorModal").modal('toggle');
 						});
 
 					$http.get("/market/"+$rootScope.market.id+"/avenants")
@@ -19,7 +39,8 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 							$rootScope.market.avenants = res;
 						})
 						.error(function () {
-							alert('error')
+							$scope.error.message = "Erreur lors du chargement des avenants !";
+							$("#errorModal").modal('toggle');
 						});
             
                     $scope.updateMarketsDetails = function(){
@@ -39,10 +60,13 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 								$scope.updateMarketsDetails();
 								$scope.montant="";
 							}).error(function() {
-								alert('error adding decomptes')
+								$scope.error.message = "Erreur lors de l'ajout des decomptes !";
+								$("#errorModal").modal('toggle');
 							});
 						}else{
-							alert("valeur de decompte non valide")
+							//alert("valeur de decompte non valide")
+							$scope.error.message = "Valeur de decompte non valide !";
+							$("#errorModal").modal('toggle');
 						}
 					};
 					$scope.avenant = {};
@@ -56,11 +80,12 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 								$scope.updateMarketsDetails();
 								$scope.avenant = {};
 							}).error(function() {
-								alert('error adding avenants')
+								$scope.error.message = "Erreur lors de l'ajout des avenants !";
+								$("#errorModal").modal('toggle');
 							});
 						}else{
-							alert('valeur de l\'avenant  non valide')
-						}
+							$scope.error.message = "Valeur de l'avenant non valide !";
+							$("#errorModal").modal('toggle');						}
 					}
                     $scope.deleteDecompte = function(i){
                         marketsFactory.deleteDecompte($rootScope.market.decomptes[i].id)
@@ -70,7 +95,8 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
                                 $scope.updateMarketsDetails();
                             })
                             .error(function(){
-                                alert('error');
+                               $scope.error.message = "erreur lors de la suppression du decompte !";
+								$("#errorModal").modal('toggle');
                             });
                     }
                     
@@ -80,9 +106,11 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
                                 $rootScope.market.somme_avenants -= $rootScope.market.avenants[i].montant;
                                 $rootScope.market.avenants.splice(i,1);
                                 $scope.updateMarketsDetails();
+                                toastr.success("la suppression de l'avenant a réussi ");
                             })
                             .error(function(){
-                                alert('error')
+                                $scope.error.message = "erreur lors de la suppression de l'avenant !";
+								$("#errorModal").modal('toggle');
                             });
                     }
 			$scope.edit = false;
@@ -94,10 +122,11 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 					//this code is run when updating the market
 					marketsFactory.updateMarket($rootScope.market)
                         .success(function(res){
-                            alert('market updated');
+                           toastr.success("Le marché a été mis à jour ! ");
                         })
                         .error(function(){
-                            alert('error')
+                            $scope.error.message = "erreur lors de la mise à jour du marché !";
+								$("#errorModal").modal('toggle');
                         });
 					
 				}else{
@@ -107,7 +136,8 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 							$rootScope.collaborators = resp;
 						})
 						.error(function () {
-							alert('loding all collaborators error')
+							 $scope.error.message = "erreur lors du chargement des collaborateurs !";
+							 $("#errorModal").modal('toggle');
 						});
                     $scope.tmpMarket = $rootScope.market;
 				}
@@ -128,7 +158,11 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 			$scope.setBet = function(){
 				$rootScope.market.bet_id = $rootScope.collaborators.bets[betIndex].id;
 			}	
-
+			$scope.logout = function() {
+				if($rootScope.user){
+					authService.logout();
+				}
+			}
 			$scope.saveCollaborator = function (coll) {
 				
 				collaborators.post(coll,$scope[coll])
@@ -138,20 +172,35 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
                         $("#"+coll+"Modal").modal('toggle');
                     })
                     .error(function(){
-                        alert('error saving '+coll);
+                        $scope.error.message='erreur lors de l\'enregistrement du collaborateur';
+                        $("#errorModal").modal('toggle');
                     });
 				    
 			}
 
 			$scope.printMarket = function () {
-				alert('printing market')
+				
+				toastr.success('génération du pdf en cours..');
+				$http.get('/pdf/market/'+$rootScope.market.id).success(function(res){
+					window.open('/pdf/market/'+$rootScope.market.id);
+				}).error(function(){
+					toastr.error('erreur lors de la génération du pdf..');
+				});
+
 			}
 			$scope.sendMail = function () {
-				$http.post("/mail",{"obj" : $scope.dest}).success(function(res){
-					console.log("hhhh");
+				toastr.success('envoie de l\'email en cours..');
+				$http.post("/mail",{"obj":$scope.dest,"mail":$scope.mail}).success(function(res){
+					$('#mailModal').modal("toggle");
 				}).error(function(){
-					alert("error");
+					toastr.error('erreur lors de l\'envoie du mail..');
 				});
+			}
+
+			$scope.cancelMail=function(){
+				$scope.dest = {};
+				$scope.mail = {};
+				$('#mailModal').modal("toggle");
 			}
 		}
 });

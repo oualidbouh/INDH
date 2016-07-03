@@ -19,11 +19,22 @@ use App\Avenant;
 use App;
 use Mail;
 use PDF;
-
+use App\User;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response as fileRes;
+use JildertMiedema\LaravelPlupload\Facades\Plupload;
 class marchesCtrl extends Controller
 {
 
     
+     private $r ;
+    
+    public function login(Request $r)
+    {
+        //var_dump($r->all()["login"]);
+        //die();
+        return (User::where('email',$r->all()["login"])->where("password",$r->all()["password"])->get());
+    }
     public function getMarkets($year,$type){
     	
         $markets = Marche::all()->where('type_budget',$type)-> where('year',$year."")->where('archive',"0");
@@ -48,7 +59,7 @@ class marchesCtrl extends Controller
                 "etat" => $this->getState($m)
                 );
         }
-
+//        var_dump($marketsArray);
         return $marketsArray;
     }
     private function getState($m)
@@ -68,6 +79,38 @@ class marchesCtrl extends Controller
 
         return 0;
     }
+
+     public function getImages($id)
+    {
+           $path = storage_path() . '/images' ;
+
+           $files = scandir($path);
+           $images = [];
+           //var_dump($files);
+
+           for($i = 2;$i<count($files);$i++){
+                if(explode("_",$files[$i])[0] == $id){
+                    $red = 'data:image/'.explode('.', $files[$i])[1].';base64,' . base64_encode(file_get_contents($path."/".$files[$i]));
+                    $images[] = array(
+                            "src" => $red,
+                            "date" => explode("_",$files[$i])[1],
+                            "ext" => explode('.', $files[$i])[1]
+                        );
+                }
+           }
+            return $images;
+    }
+
+    public function deleteImage($iid)//param1:market Id , param2 image id;
+    {
+        $path = storage_path() . '/images' ;
+        if(unlink($path."/".$iid)){
+            return "OK";
+        }
+    }
+
+
+
 
     public function putMarket(Request $req,$id)
     {
@@ -126,6 +169,7 @@ class marchesCtrl extends Controller
 
         return $s;
     }
+
     public function deleteMarket($id){
         $m = Marche::find($id);
         $m->archive = 1;
@@ -162,6 +206,18 @@ class marchesCtrl extends Controller
         return 1;
     }
 
+
+    public function postImage(Request $req)
+    {
+        $this->r = $req;
+        
+        return Plupload::receive('file', function ($file)
+            {
+                $file->move(storage_path() . '/images/', $this->r->all()["flowFilename"]);
+                return 'ready';
+            });
+    }
+    
     public function getDecomptes($id)
     {
         return Decompte::where('marche_id',$id)->get();

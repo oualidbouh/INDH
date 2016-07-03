@@ -38,6 +38,10 @@ app.factory('collaborators',function($http){
         post:function(coll,obj){
             //coll can only be [bet,societe,maitreOuvrage,architecte,labo]
             return $http.post("/"+coll+"s",obj);
+        },
+        putCollaborator:function(obj){
+                return $http.put("/collaborators/update",obj);
         }
+
     };
 });

@@ -14,39 +14,39 @@ class betSeeder extends Seeder
         DB::table('b_e_t_s')->truncate();
         $bets = array(
         	[
-        		'name_bet'  => "ayachi",
+        		'name_bet'  => "bet1",
         		'tel_bet' => "0659124800",
         		'fax_bet' => "0000000000",
         		'adresse_bet' => "oujda, ALQOS",
-        		'email_bet' => "archi@farchi.com"
+        		'email_bet' => "bet1@bet.com"
         	],
         	[
-        		'name_bet'  => "oualid",
+        		'name_bet'  => "bet2",
         		'tel_bet' => "0659124800",
         		'fax_bet' => "0000000000",
-        		'adresse_bet' => "oujda, ALQOS",
-        		'email_bet' => "bouh@archi.com"
+        		'adresse_bet' => "Casablanca, Maarif",
+        		'email_bet' => "bet2@bet.com"
         	],
         	[
-        		'name_bet'  => "archi1",
-        		'tel_bet' => "066666",
-        		'fax_bet' => "65698",
-        		'adresse_bet' => "oujda, ALQOS",
-        		'email_bet' => "archi1@archi.com"
-        	],
-        	[
-        		'name_bet'  => "archi 6",
+        		'name_bet'  => "bet3",
         		'tel_bet' => "0659124800",
-        		'fax_bet' => "54658",
+        		'fax_bet' => "0659124800",
         		'adresse_bet' => "oujda, ALQOS",
-        		'email_bet' => "archi6@archi.com"
+        		'email_bet' => "bet3@bet.com"
         	],
         	[
-        		'name_bet'  => "soufiane",
+        		'name_bet'  => "bet4",
         		'tel_bet' => "0659124800",
-        		'fax_bet' => "5458",
+        		'fax_bet' => "0659124800",
         		'adresse_bet' => "oujda, ALQOS",
-        		'email_bet' => "soufiane@chalouh.com"
+        		'email_bet' => "bet4@bet.com"
+        	],
+        	[
+        		'name_bet'  => "bet5",
+        		'tel_bet' => "0659124800",
+        		'fax_bet' => "0659124800",
+        		'adresse_bet' => "oujda, ALQOS",
+        		'email_bet' => "bet5@chalouh.com"
         	],
         	);
          DB::table('b_e_t_s')->insert($bets);

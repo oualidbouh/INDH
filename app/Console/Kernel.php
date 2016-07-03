@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
 
             foreach ($m as $key => $value) {
 
-                    if($today->diffInDays(new Carbon($m[$key]->date_fin_travaux))<10){
+                   // if($today->diffInDays(new Carbon($m[$key]->date_fin_travaux))<5000){
 
                         $s = $m[$key]->societe;
 
@@ -47,10 +47,10 @@ class Kernel extends ConsoleKernel
                         Mail::raw("le marché ".$m[$key]->id." lui reste une durée de ".$today->diffInDays(new Carbon($m[$key]->date_fin_travaux))." jours", function($message) use ($data) {
                                 $message->to($data['email'], $data['name'])->subject('Danger Fin de travaux');
                     });
-                }
+              // }
           
       }
-        })->dailyAt('13:19');
+        })->dailyAt('16:40');
 
     }
 }

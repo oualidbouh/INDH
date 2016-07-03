@@ -123,11 +123,6 @@ return [
 
     'providers' => [
 
-        /*
-         * Laravel Framework Service Providers...
-         */
-        //Vsmoraes\Pdf\PdfServiceProvider::class,
-        //Barryvdh\DomPDF\ServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -150,14 +145,18 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
-        /*
-         * Application Service Providers...
-         */
+        /* this is the file upload provider*/
+        JildertMiedema\LaravelPlupload\LaravelPluploadServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*Excel*/
+        Collective\Bus\BusServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class
+
+
 
     ],
 
@@ -173,8 +172,7 @@ return [
     */
 
     'aliases' => [
-        //'PDF' => Vsmoraes\Pdf\PdfFacade::class,
-        //'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -206,6 +204,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Plupload' => JildertMiedema\LaravelPlupload\Facades\Plupload::class,
 
     ],
 

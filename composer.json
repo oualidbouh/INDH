@@ -9,7 +9,10 @@
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-dompdf": "0.6.*",
         "vsmoraes/laravel-pdf": "^1.0",
-        "barryvdh/laravel-snappy":"0.2.x"
+        "barryvdh/laravel-snappy":"0.2.x",
+        "jildertmiedema/laravel-plupload": "^0.3.0",
+        "maatwebsite/excel": "~2.1.0",
+        "laravelcollective/bus": "^5.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

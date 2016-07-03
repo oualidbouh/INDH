@@ -1,10 +1,13 @@
-app.controller("marketsCtrl",function ($scope,$rootScope,$location,marketsFactory) {
+app.controller("marketsCtrl",function ($scope,$rootScope,$location,marketsFactory,authService) {
 
 	$scope.markets = [];
+	$scope.error = {};
+	$scope.confirm = {};
 	if($rootScope.year && $rootScope.budgetType){
 			marketsFactory.getMarkets($rootScope.year,$rootScope.budgetType)
 				.success(function (res){
 					$scope.markets = res;
+					
 				}).error(function () {
 					alert('error loading markets')
 				});
@@ -15,15 +18,20 @@ app.controller("marketsCtrl",function ($scope,$rootScope,$location,marketsFactor
 					$location.path("/market/"+i+"/detail");
 
 				}
+					$scope.logout = function() {
+						if($rootScope.user){
+							authService.logout();
+						}
+					}
                 $scope.deleteMarket = function(i){
                     if(confirm("Voulez vous vraiment supprimer ce marché")){
                         marketsFactory.deleteMarket($scope.markets[i].id)
                         .success(function(res){
                             $scope.markets.splice(i,1);
-                            alert('marché supprimé')
                         })
                         .error(function(){
-                            alert('erreur lors de la suppression du marché')
+                            $scope.error.message = 'erreur lors de la suppression du marché';
+							$('#errorModal').modal('toggle');
                         });
                     }
                 }

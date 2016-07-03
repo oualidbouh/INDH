@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
          $this->call(marcheSeeder::class);
          $this->call(decomptesSeeder::class);
          $this->call(AvenantSeeder::class);
+         $this->call(usersSeeder::class);
     }
 }

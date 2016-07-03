@@ -11,13 +11,11 @@
   <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Options
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="#/addMarket"><b>Ajouter marché</b></a></li>
-      <li><a href="#/markets"><b>Imprimer marches</b></a></li>
-      <li class="divider"></li>
-      <li><a href="#/"><b>Retour</b></a></li>
+      <li><a href="#/addMarket"><i class="glyphicon glyphicon-plus"></i>&nbsp;<b>Ajouter marché</b></a></li>
+      <li><a href="" ng-click="logout()"><i class="glyphicon glyphicon-log-out"></i>&nbsp;<b>Déconnexion</b></a></li>
+      <li><a href="#/"><i class="glyphicon glyphicon-log-out"></i>&nbsp;<b>Retour</b></a></li>
     </ul>
   </div>
-
   <div class="dropdown" style="float : left">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Colonnes
       <span class="caret"></span></button>
@@ -38,6 +36,8 @@
       <table id="markets" class="table table-bordered table-striped table-hovered">
         <thead>
           <tr>
+            <th class="text-center">% FINANCIER</th>
+            <th class="text-center">% TRAVAUX</th>
             <th class="text-center">OBJET</th>
             <th class="text-center">MAITRE D'OUVRAGE</th>
 
@@ -46,8 +46,7 @@
             <th ng-show = "ddt" class="text-center">DATE DEBUT TRAVAUX</th>
             <th ng-show = "dft" class="text-center">DATE FIN TRAVAUX </th>
             <th ng-show = "bet" class="text-center">BET</th>
-            <th class="text-center">% FINANCIER</th>
-            <th class="text-center">% TRAVAUX</th>
+
             <th ng-show = "soc" class="text-center">SOCIETE</th>
             <th ng-show = "arch" class="text-center">ARCHITECTE</th>
             <th  class="text-center">MONTANT</th>
@@ -58,6 +57,11 @@
           ng-click="clickTR($index)" 
           ng-class="{'danger':market.etat == 0,'success':market.etat == 1}"
           ng-mouseover="m = 1" ng-mouseleave="m=0">
+          <td class="text-center">
+          <progress id='p' max='100' value='{{market.pourcentage_financier}}'></progress> {{market.pourcentage_financier}} %
+          </td>
+          <td  class="text-center">          <progress id='p' max='100' value='{{market.pourcentage_travaux}}'></progress>
+{{market.pourcentage_travaux}}%</td>
           <td  class="text-center">{{market.objet}}</td>
           <td  class="text-center">{{market.maitreOuvrage.name_maitre_ouvrage}}</td>
 
@@ -66,15 +70,41 @@
           <td ng-show="ddt" class="text-center">{{market.date_debut_travaux}}</td>
           <td ng-show="dft" class="text-center">{{market.date_fin_travaux}}</td>
           <td ng-show="bet" class="text-center">{{market.bet.name_bet}}</td>
-          <td class="text-center">{{market.pourcentage_financier}}%</td>
-          <td  class="text-center">{{market.pourcentage_travaux}}%</td>
+
           <td ng-show="soc" class="text-center">{{market.societe.name_societe}}</td>
-          <td ng-show="arch" class="text-center">{{market.architecte.name_architecte}}</td>
+          <td ng-show="arch" class="text-center">{{market.architecte.name_archi}}</td>
           <td  class="text-center">
             {{market.montant}}
-            <span ng-show="m" class="close pull-right" ng-click="deleteMarket($index);$event.stopPropagation()">&times;</span>
+            <button ng-show="m" class="close pull-right"  ng-click="deleteMarket();$event.stopPropagation()">&times;</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+<div class="modal" id="errorModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>{{error.message}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="confirmModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center"><b>{{confirm.message}} </b></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" ng-click = "deleteMarket()">Archiver</button>
+      </div>
+    </div>
+  </div>
+</div>

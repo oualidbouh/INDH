@@ -1,21 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 Route::get('/', function () {
     return view('home');
 });
 
 /*GET REQUEST*/
 
+Route::get('/excel','ExcelController@getExcel');
 Route::get("/markets/{year}/{type}","marchesCtrl@getMarkets");
 Route::get("/labos","CollaboratorCtrl@getLabos");
 Route::get("/bets","CollaboratorCtrl@getBets");
@@ -29,7 +20,8 @@ Route::get("/market/{id}/decomptes","marchesCtrl@getDecomptes");
 Route::get("/market/{id}/avenants","marchesCtrl@getAvenants");
 Route::get("/collaborators/all","CollaboratorCtrl@getAll");
 Route::get('/pdf/market/{id}',"marchesCtrl@downloadPdf");
-
+Route::get("/market/images/{id}","marchesCtrl@getImages");
+Route::get("/users","UserController@getUsers");
 /*POST REQUEST*/
 Route::post("/labos","CollaboratorCtrl@postLabos");
 Route::post("/bets","CollaboratorCtrl@postBets");
@@ -40,11 +32,17 @@ Route::post('/marche','marchesCtrl@postMarket');
 Route::post('/market/newDecompte','marchesCtrl@addDecompte');
 Route::post('/market/newAvenant','marchesCtrl@addAvenant');
 Route::post('/mail','CollaboratorCtrl@sendMail');
+Route::post('/login','marchesCtrl@login');
+Route::post("/upload","marchesCtrl@postImage");
+
 /*PUT REQUEST*/
+Route::put("/collaborators/update","CollaboratorCtrl@putCollaborator");
 Route::put("/market/{id}","marchesCtrl@putMarket");
+Route::put("/users","UserController@updateUser");
 
 /*DELETE REQUEST*/
 Route::delete("market/delete/{id}","marchesCtrl@deleteMarket");
 Route::delete("/decompte/delete/{id}","marchesCtrl@deleteDecompte");
 Route::delete("/avenant/delete/{id}","marchesCtrl@deleteAvenant");
+Route::delete("/market/images/{iid}","marchesCtrl@deleteImage");
 ?>

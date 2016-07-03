@@ -2,24 +2,27 @@
 <h2>detail du marché </h2>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <div>
-   <h3>type du marché : {{budgetType}}
+
+  <h3>type du marché : {{budgetType}}
     
 
-  <div class="dropdown pull-right">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
+<div class="dropdown pull-right">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Options
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="" ng-hide="edit" ng-click="editMarket()"><b>Modifier les données du marché</b></a></li>
-      <li><a href="" ng-show="edit" ng-click="editMarket()"><b>Sauvegardez les données du marché</b></a></li>
-      <li><a href="" ng-click="printMarket()"><b>Imprimer le marché</b></a></li>
-      <li><a href="" data-toggle="modal" data-target="#mailModal"><b>Envoyer mail</b></a></li>
+      <li><a href="" ng-hide="edit" ng-click="editMarket()"><i class="glyphicon glyphicon-edit"></i>&nbsp;<b>Modifier les données du marché</b></a></li>
+      <li><a href="" ng-show="edit" ng-click="editMarket()"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;<b>Sauvegardez les données du marché</b></a></li>
+      <li><a href="" ng-click="printMarket()"><i class=" glyphicon glyphicon-print"></i>&nbsp;<b>Imprimer le marché</b></a></li>
+      <li><a href="" data-toggle="modal" data-target="#mailModal"><i class="glyphicon glyphicon-envelope"></i>&nbsp;<b>Envoyer mail</b></a></li>
+      <li><a href="#/images"><i class="glyphicon glyphicon-picture"></i>&nbsp;<b>Consulter les images du marché courrant</b></a></li>
       <li class="divider"></li>
-      <li><a href="" onclick='window.history.back()'><b>Retour</a></li>
+      <li><a href="" ng-click="logout()"><i class="glyphicon glyphicon-log-out"></i> <b>Déconnexion</b></a></li>
+      <li><a href="" onclick="window.history.back()"><i class="glyphicon glyphicon-log-out"></i> <b>Retour</b></a></li>
+      
     </ul>
   </div>
 </div>
 </h3>
-
 
    <table class="table table-bordered table-hover table-striped marketDetails">
       <tr class="row text-center" >
@@ -268,8 +271,7 @@
          </table>
       </div>
    </div>
-    <a href="#/images"><b>Consulter les images du marché courrant</b></a>
-</div>
+
 
 <div class="modal fade" role="dialog" id="mailModal" >
     <div class="modal-dialog">
@@ -277,12 +279,12 @@
             <div class="modal-header">
 
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="image-gallery-title">12:45</h4>
+                <h4 class="modal-title" id="image-gallery-title">Envoyer un mail à un collaborateur</h4>
             </div>
             <div class="modal-body">
                 <form >
                   <div class="form-group">
-                  <select ng-model="dest" class="form-control">
+                  <select ng-model="dest" class="form-control" required>
                     <option value="{{market.architecte}}">Architecte : {{market.architecte.email_archi}}</option>
                     <option value="{{market.societe}}">Société : {{market.societe.email_societe}}</option>
                     <option value="{{market.bet}}">BET : {{market.bet.email_bet}}</option>
@@ -750,4 +752,17 @@
          </div>
       </div>
    </div>
+</div>
+
+<div class="modal" id="errorModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>{{error.message}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
 </div>

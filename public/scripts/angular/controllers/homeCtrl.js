@@ -1,13 +1,19 @@
-app.controller("homeCtrl",["$scope","$rootScope",function($scope,$rootScope) {
+app.controller("homeCtrl",function($scope,$rootScope,$location,authService) {
 	$scope.years = [];
-	
+	if(!$rootScope.user){
+		$location.path('/login');
+	}else{
 	var selected_index = 0;
-	for(i = 2000;i<=2050;i++){
+	for(i = 2005;i<=2050;i++){
 		$scope.years.push({year:i,active:""});
 	}
 	$scope.years[0].active = "active";
 
-
+	$rootScope.logout = function() {
+		if($rootScope.user){
+			authService.logout();
+		}
+	}
 
 	$scope.selectYear = function (i) {
 		$scope.years[selected_index].active = "";
@@ -20,5 +26,5 @@ app.controller("homeCtrl",["$scope","$rootScope",function($scope,$rootScope) {
 		$rootScope.budgetType  =  type;
 	}
 	$scope.selectYear(0);
-	
-}]);
+	}
+});
