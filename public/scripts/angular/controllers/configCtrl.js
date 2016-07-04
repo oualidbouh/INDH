@@ -102,5 +102,112 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 			toastr.error("erreur lors de la mise à jour de l'utilisateur");
 		});
 	}
+
+	$scope.saveCollaborator = function(newCollab){
+		if($scope.newCollab.type==='archi'){
+			for(var i = 0; i < $scope.archis.length ; i++){
+				if($scope.archis[i].name_archi === $scope.newCollab.name){
+					toastr.error('le collaborateur saisi existe déjà !');
+					return;
+				}
+			}
+		}
+		
+	
+		if($scope.newCollab.type==='lab'){
+			for(var i = 0; i < $scope.labos.length ; i++){
+				if($scope.labos[i].name_labo === $scope.newCollab.name){
+					toastr.error('le collaborateur saisi existe déjà !');
+					return
+				}
+			}
+		}
+
+		if($scope.newCollab.type==='bet'){
+			for(var i = 0; i < $scope.bets.length ; i++){
+				if($scope.bets[i].name_bet === $scope.newCollab.name){
+					toastr.error('le collaborateur saisi existe déjà !');
+					return;
+				}
+			}
+		}
+
+		if($scope.newCollab.type==='maitre'){
+			for(var i = 0; i < $scope.maitres.length ; i++){
+				if($scope.maitres[i].name_maitre_ouvrage === $scope.newCollab.name){
+					toastr.error('le collaborateur saisi existe déjà !');
+					return;
+				}
+			}
+		}
+
+		if($scope.newCollab.type==='soc'){
+			for(var i = 0; i < $scope.societes.length ; i++){
+				if($scope.societes[i].name_societe === $scope.newCollab.name){
+					toastr.error('le collaborateur saisi existe déjà !');
+					return;
+				}
+			}
+		}
+
+			collaborators.postCollabrator(newCollab).success(function(res){
+				if($scope.newCollab.type === 'archi'){
+					var a = {};
+					a.name_archi = $scope.newCollab.name;
+					a.email_archi = $scope.newCollab.email;
+					a.fax_archi = $scope.newCollab.fax;
+					a.tel_archi = $scope.newCollab.tel;
+					a.adresse_archi = $scope.newCollab.adresse;
+					console.log(a);
+					$scope.archis.push(a);
+				}
+				if($scope.newCollab.type === 'lab'){
+					var a = {};
+					a.name_labo = $scope.newCollab.name;
+					a.email_labo = $scope.newCollab.email;
+					a.fax_labo = $scope.newCollab.fax;
+					a.tel_labo = $scope.newCollab.tel;
+					a.adresse_labo = $scope.newCollab.adresse;
+					console.log(a);
+					$scope.labos.push(a);
+				}
+				if($scope.newCollab.type === 'bet'){
+					var a = {};
+					a.name_bet = $scope.newCollab.name;
+					a.email_bet = $scope.newCollab.email;
+					a.fax_bet = $scope.newCollab.fax;
+					a.tel_bet = $scope.newCollab.tel;
+					a.adresse_bet = $scope.newCollab.adresse;
+					console.log(a);
+					$scope.bets.push(a);
+				}
+				if($scope.newCollab.type === 'maitre'){
+					var a = {};
+					a.name_maitre_ouvrage = $scope.newCollab.name;
+					a.email_maitre_ouvrage = $scope.newCollab.email;
+					a.fax_maitre_ouvrage = $scope.newCollab.fax;
+					a.tel_maitre_ouvrage = $scope.newCollab.tel;
+					a.adresse_maitre_ouvrage = $scope.newCollab.adresse;
+					console.log(a);
+					$scope.maitres.push(a);
+				}
+				if($scope.newCollab.type === 'soc'){
+					var a = {};
+					a.name_societe = $scope.newCollab.name;
+					a.email_societe = $scope.newCollab.email;
+					a.fax_societe = $scope.newCollab.fax;
+					a.tel_societe = $scope.newCollab.tel;
+					a.adresse_societe = $scope.newCollab.adresse;
+					console.log(a);
+					$scope.societes.push(a);
+				}
+				$("#collabModal").modal("toggle");
+				toastr.success("l'architecte a été ajouté avec succés");
+				$scope.newCollab = {};
+			}).error(function(){
+				toastr.error("erreur lors de l'ajout de l'architecte");
+			});
+
+	}
 	}
 });

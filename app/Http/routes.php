@@ -34,7 +34,7 @@ Route::post('/market/newAvenant','marchesCtrl@addAvenant');
 Route::post('/mail','CollaboratorCtrl@sendMail');
 Route::post('/login','marchesCtrl@login');
 Route::post("/upload","marchesCtrl@postImage");
-
+Route::post('collaborateur','CollaboratorCtrl@postNewCollaborator');
 /*PUT REQUEST*/
 Route::put("/collaborators/update","CollaboratorCtrl@putCollaborator");
 Route::put("/market/{id}","marchesCtrl@putMarket");

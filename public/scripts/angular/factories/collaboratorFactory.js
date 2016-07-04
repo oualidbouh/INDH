@@ -39,6 +39,9 @@ app.factory('collaborators',function($http){
             //coll can only be [bet,societe,maitreOuvrage,architecte,labo]
             return $http.post("/"+coll+"s",obj);
         },
+        postCollabrator:function(obj){
+            return $http.post('/collaborateur',obj);
+        },
         putCollaborator:function(obj){
                 return $http.put("/collaborators/update",obj);
         }

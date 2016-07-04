@@ -759,7 +759,7 @@
         <h4 class="modal-title">Ajouter un nouveau collaborateur</h4>
       </div>
       <div class="modal-body">
-        <form name="labForm">
+        <form name="collabForm">
           <div class="form-group">
             <div class="row">
               <div class="col-lg-4">
@@ -768,8 +768,8 @@
                 </label>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.nom.$invalid}">
-                  <select class="form-control" required>
+                <div ng-class="{'has-error':collabForm.nom.$invalid}">
+                  <select ng-model="newCollab.type" class="form-control" required>
                   <option value="archi">Architecte</option>
                   <option value="lab">Laboratoire</option>
                   <option value="bet">Bureau d'études</option>
@@ -788,8 +788,8 @@
                 </label>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.fax.$invalid}">
-                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newLab.fax_labo" type="text">
+                <div ng-class="{'has-error':collabForm.fax.$invalid}">
+                  <input class="form-control"  ng-required ng-model="newCollab.name" type="text">
                 </div>
               </div>
             </div>
@@ -802,8 +802,8 @@
                 </label>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.email.$invalid}">
-                  <input class="form-control" name="email" ng-required ng-model="newLab.email_labo" type="email">
+                <div ng-class="{'has-error':collabForm.email.$invalid}">
+                  <input class="form-control" name="email" ng-required ng-model="newCollab.email" type="email">
                 </div>
               </div>
             </div>
@@ -816,8 +816,8 @@
                 </label>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.tel.$invalid}">
-                  <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newLab.tel_labo" type="text">
+                <div ng-class="{'has-error':collabForm.tel.$invalid}">
+                  <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newCollab.tel" type="text">
                 </div>
               </div>
             </div>
@@ -830,8 +830,8 @@
                 </label>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.fax.$invalid}">
-                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newLab.fax_labo" type="text">
+                <div ng-class="{'has-error':collabForm.fax.$invalid}">
+                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newCollab.fax" type="text">
                 </div>
               </div>
             </div>
@@ -844,22 +844,18 @@
                 </label>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="newLab.adresse_labo" type="text">
+                <div ng-class="{'has-error':collabForm.address.$invalid}">
+                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="newCollab.adresse" type="text">
                 </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newLab,'lab')" ng-disabled="labForm.$invalid">Sauvegarder</button>
+            <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newCollab)" ng-disabled="labForm.$invalid">Sauvegarder</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-
-
-<!--Fin -->

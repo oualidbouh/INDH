@@ -264,4 +264,61 @@ class CollaboratorCtrl extends Controller
 
         }
     }
+
+    public function postNewCollaborator(Request $request){
+
+        $param = $request->all();
+        if($param['type'] == 'archi'){
+            $a = new Architecte();
+            $a->name_archi = $param['name'];
+            $a->email_archi = $param['email'];
+            $a->fax_archi = $param['fax'];
+            $a->tel_archi = $param['tel'];
+            $a->adresse_archi = $param['adresse'];
+            $a->save();
+            return 'done';
+        }
+
+        if($param['type'] == 'lab'){
+           $l = new Laboratoire();
+           $l->name_labo = $param['name'];
+           $l->email_labo = $param['email'];
+           $l->tel_labo = $param['tel'];
+           $l->fax_labo = $param['fax'];
+           $l->adresse_labo = $param['adresse'];
+           $l->save();
+           return 'done';
+        }
+
+        if($param['type'] == 'bet'){
+            $bet = new BET();
+            $bet->name_bet = $param['name'];
+            $bet->tel_bet = $param['tel'];
+            $bet->fax_bet = $param['fax'];
+            $bet->adresse_bet = $param['adresse'];
+            $bet->email_bet = $param['email'];
+            $bet->save();
+            return 'done';
+        }
+        if($param['type']== 'maitre'){
+            $maitre = new Maitre_ouvrage();
+            $maitre->name_maitre_ouvrage = $param['name'];
+            $maitre->tel_maitre_ouvrage = $param['tel'];
+            $maitre->fax_maitre_ouvrage = $param['fax'];
+            $maitre->email_maitre_ouvrage = $param['email'];
+            $maitre->adresse_maitre_ouvrage = $param['adresse'];
+            $maitre->save();
+            return 'done';
+        }
+        if($param['type'] == 'soc'){
+            $soc = new Societe();
+            $soc->name_societe = $param['name'];
+            $soc->tel_societe = $param['tel'];
+            $soc->fax_societe = $param['fax'];
+            $soc->email_societe = $param['email'];
+            $soc->adresse_societe = $param['adresse'];
+            $soc->save();
+            return 'done';
+        }
+    }
 }
