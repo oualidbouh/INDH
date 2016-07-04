@@ -729,7 +729,7 @@
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div ng-class="{'has-error':userForm.type.$invalid}">
-                  <select class="form-control" ng-model="newUser.type">
+                  <select class="form-control" ng-change="changeType(newUser.type)" ng-model="newUser.type">
                     <option value="admin">Administrateur</option>
                     <option value="editor">Modificateur</option>
                     <option value="visitor">Visiteur</option>
@@ -852,7 +852,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newCollab)" ng-disabled="labForm.$invalid">Sauvegarder</button>
+            <button type="button" class="btn btn-primary" ng-click="saveCollab(newCollab)" ng-disabled="labForm.$invalid">Sauvegarder</button>
           </div>
         </form>
       </div>

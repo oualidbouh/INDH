@@ -33,6 +33,7 @@ class UserController extends Controller
         $user->password = $param['password'];
         $user->type = $param['type'];
         $user->update();
+        return 'done';
 
     }
 }

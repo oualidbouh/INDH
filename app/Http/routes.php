@@ -45,4 +45,5 @@ Route::delete("market/delete/{id}","marchesCtrl@deleteMarket");
 Route::delete("/decompte/delete/{id}","marchesCtrl@deleteDecompte");
 Route::delete("/avenant/delete/{id}","marchesCtrl@deleteAvenant");
 Route::delete("/market/images/{iid}","marchesCtrl@deleteImage");
+
 ?>

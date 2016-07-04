@@ -1,7 +1,7 @@
 /*Ce controlleur est associé à la page de modification des collaborateurs*/
 app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,authService,userFactory) {
 	
-	console.log($rootScope.user.id);
+	console.log($rootScope.user);
 	
 	if($rootScope.user == undefined){
 		$location.path("/login");
@@ -14,7 +14,7 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 
 
 	else {
-	
+	$scope.newUser = {};
 	$scope.archis = [];
 	$scope.labos = [];
 	$scope.bets = [];
@@ -89,12 +89,44 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 		toastr.warning("erreur lors du chargements des utilisateurs !");
 	});
 
+	$scope.changeType =function(type){
+		
+		if(type=='admin'){
+		var j =0;
+		var k = 0;
+		for(var i = 0 ; i < $scope.users.length ; i++){
+			if($scope.users[i].type === 'admin'){
+				k=i;
+				j++;
+			}
+		}
+		if(j===0){
+			toastr.error("Veuillez au moins designer un administrateur ! ");
+			console.log(k);
+			$scope.users[k].type = 'admin';
+			$scope.apply();
+			return ; 
+		}
+	}
+		return ; 
+	}
 	$scope.modifUser = function(i){
 		
 		$scope.newUser = $scope.users[i];		
 	}
 
 	$scope.saveUser = function(obj){
+		var j =0;
+		for(var i = 0 ; i < $scope.users.length ; i++){
+			if($scope.users[i].type === 'admin'){
+				j++;
+			}
+		}
+		if(j===0){
+			toastr.error("Veuillez au moins designer un administrateur ! ");
+			return ; 
+		}
+
 		userFactory.updateUser(obj).success(function(res){
 			$("#userModal").modal("toggle");
 			toastr.success("l'utilisateur a été mis à jour avec sucés ! ");
@@ -103,7 +135,7 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 		});
 	}
 
-	$scope.saveCollaborator = function(newCollab){
+	$scope.saveCollab = function(newCollab){
 		if($scope.newCollab.type==='archi'){
 			for(var i = 0; i < $scope.archis.length ; i++){
 				if($scope.archis[i].name_archi === $scope.newCollab.name){
