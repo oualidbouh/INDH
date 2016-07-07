@@ -33,7 +33,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
             $scope.market.labo_id = $scope.laboratoires[0].id;
         })
         .error(function(){
-            alert('error loading Laboratoires');
+            toastr.error('Erreur lors du chargement des  Laboratoires');
         });
 
 	collaborators.getArchs()
@@ -43,7 +43,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
             $scope.market.archi_id = $scope.architectes[0].id;
         })
         .error(function(){
-            alert('error loading Archs');
+            toastr.error('Erreur lors du chargement des  architectes');
         });
 	
 	collaborators.getBETS()
@@ -53,7 +53,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
             $scope.market.bet_id = $scope.bets[0].id;
         })
         .error(function(){
-            alert('error loading bets');
+            toastr.error('Erreur lors du chargement des  bets');
         });
 
 	collaborators.getSocietes()
@@ -63,7 +63,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
             $scope.market.societe_id = $scope.societes[0].id;
         })
         .error(function(){
-            alert('error loading societes');
+            toastr.error('Erreur lors du chargement des  societes');
         });
 
 	collaborators.getMaitre()
@@ -73,7 +73,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
             $scope.market.maitre_ouvrage_id = $scope.maitres[0].id;
         })
         .error(function(){
-            alert('error loading maitres');
+            toastr.error("Erreur lors du chargement des  maitres d'ouvrage");
         });
 
 
@@ -90,7 +90,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
 
             })
             .error(function(){
-                alert('error')
+                toastr.error("Erreur lors de l'ajout du")
             });
     }
 	$scope.saveLabo = function(){
@@ -103,7 +103,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
                 $scope.labo = {};
             })
             .error(function(){
-                alert('error');
+                toastr.error('');
             });
 	}
     
@@ -117,7 +117,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
                 $scope.archi = {};
             })
             .error(function(){
-                alert('error')
+                toastr.error("Erreur lors de l'ajout de l'architecte")
             });
     }
     $scope.saveBet = function(){
@@ -130,7 +130,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
                 $scope.bet = {};
             })
             .error(function(){
-                alert('error');
+                toastr.error("Erreur lors de l'ajout du bureau d'étude");
             });
 	}
     
@@ -144,7 +144,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
                 $scope.maitre = {};
             })
             .error(function(){
-                alert('error')
+                toastr.error("Erreur lors de l'ajout du maitre d'ouvrage")
             });
     }
 
@@ -155,9 +155,9 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
                 $location.path("/"+$rootScope.typeBudget);
             })
             .error(function(){
-                alert('error post market')
+                toastr.error('Erreur lors de la sauvgarde du marché')
             });
-        console.log($scope.market);
+        
     }
 
     $scope.cancelMarket = function () {

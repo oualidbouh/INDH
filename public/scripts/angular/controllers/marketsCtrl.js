@@ -17,7 +17,7 @@ app.controller("marketsCtrl",function ($scope,$rootScope,$location,marketsFactor
 
 				$scope.clickTR = function(i) {
 					$rootScope.market = $scope.markets[i];
-                    console.log($scope.markets[i]);
+                    
 					$location.path("/market/"+i+"/detail");
 
 				}

@@ -1,6 +1,6 @@
 
 app.controller("loginCtrl",function ($rootScope,$scope,$location ,authService) {
-	//console.log($rootScope.user)
+
 	$rootScope.position = "Authentification";
 	if($rootScope.user == undefined){
 
@@ -10,7 +10,7 @@ app.controller("loginCtrl",function ($rootScope,$scope,$location ,authService) {
 					
 					if(res.length != 0){
 
-						console.log(res);
+						
 						$rootScope.user = res[0];
 						$location.path('/home')
 						

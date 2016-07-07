@@ -1,7 +1,7 @@
 /*Ce controlleur est associé à la page de modification des collaborateurs*/
 app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,authService,userFactory) {
 	
-	console.log($rootScope.user);
+	
 	
 	if($rootScope.user == undefined){
 		$location.path("/login");
@@ -87,7 +87,6 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 		
 		$scope.users = res;
 		var index = 0;
-		console.log($scope.user);
 		for(var i=0; i < $scope.users.length;i++){
 			if($scope.users.id === $rootScope.user.id){
 				index = i;
@@ -113,7 +112,7 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 		}
 		if(j===0){
 			toastr.error("Veuillez au moins designer un administrateur ! ");
-			console.log(k);
+			
 			$scope.users[k].type = 'admin';
 			$scope.apply();
 			return ; 
