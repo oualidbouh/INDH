@@ -11,9 +11,10 @@
   <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Options
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="#/addMarket"><i class="glyphicon glyphicon-plus"></i>&nbsp;<b>Ajouter marché</b></a></li>
+      <li ng-hide="user.type == 'visitor'"><a href="#/addMarket"><i class="glyphicon glyphicon-plus"></i>&nbsp;<b>Ajouter marché</b></a></li>
       <li><a href="" ng-click="logout()"><i class="glyphicon glyphicon-log-out"></i>&nbsp;<b>Déconnexion</b></a></li>
-      <li><a href="#/"><i class="glyphicon glyphicon-log-out"></i>&nbsp;<b>Retour</b></a></li>
+      <li><a href="#/"><i class="glyphicon glyphicon-chevron-left"></i>&nbsp;<b>Retour</b></a></li>
+       <li><a href="#/"><i class="glyphicon glyphicon-download"></i>&nbsp;<b>Télécharger les Marchés</b></a></li>
     </ul>
   </div>
   <div class="dropdown" style="float : left">
@@ -93,7 +94,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal" id="confirmModal">
   <div class="modal-dialog">
     <div class="modal-content">

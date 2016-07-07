@@ -41,7 +41,7 @@
 </nav>
     <div class="panel panel-danger">
         <div class="panel-heading">
-            <b>@{{year }} > @{{budgetType}}</b>
+            <b>@{{position}}</b>
         </div>
         <div class="panel-body" flow-init="{target : '/upload',testChunks : false , headers : {'X-CSRF-TOKEN': '{{csrf_token()}}'}}">
             <div ng-view></div>

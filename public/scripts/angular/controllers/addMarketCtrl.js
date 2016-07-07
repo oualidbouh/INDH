@@ -2,10 +2,10 @@
 /*Controller function*/
 app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborators,marketsFactory){
 
-    if($rootScope.year == undefined || $rootScope.budgetType == undefined){
-        $location.path('/')
+    if($rootScope.year == undefined || $rootScope.budgetType == undefined || $rootScope.user == undefined || $rootScope.user.type == 'visitor'){
+        $location.path('/');
     }
-
+    $rootScope.position = "Ajouter un marché";
     $scope.market = {year:$rootScope.year};
 	/*these array store data that comes from the server*/
 	$scope.laboratoires=[];
@@ -35,6 +35,7 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
         .error(function(){
             alert('error loading Laboratoires');
         });
+
 	collaborators.getArchs()
         .success(function(res){
             $scope.architectes = res;

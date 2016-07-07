@@ -1,861 +1,905 @@
 <style type="text/css">
-  #collab :hover tr{
-    cursor: pointer;
-  }
-
-  #users :hover tr{
-    cursor: pointer;
-  }
-    .round-button-circle {
-    width: 100%;
-    height:0;
-    padding-bottom: 100%;
-    border-radius: 50%;
-    overflow:hidden;
-    background: #2E7D32; 
-    box-shadow: 0 0 3px gray;
-  }
-
-  .round-button-circle:hover {
-    background:#F44336;
-    cursor: pointer;
-  }
-
-  .round-button a {
-    display:block;
-    float:left;
-    width:100%;
-    padding-top:50%;
-    padding-bottom:50%;
-    line-height:1em;
-    margin-top:-0.5em;
-    text-align:center;
-    color:#e2eaf3;
-    font-family:Verdana;
-    font-size:1.2em;
-    font-weight:bold;
-    text-decoration:none;
-  }
-
-  @media(min-width: 200px){
-    .round-button {
-      width: 15px;
-    }
-  }
-
-  @media(min-width: 500px){
-    .round-button {
-      width:20px;
-    }
-  }
-
-  @media(min-width: 700px){
-    .round-button {
-      width:35px;
-    }
-
+   #collab :hover tr{
+   cursor: pointer;
+   }
+   #users :hover tr{
+   cursor: pointer;
+   }
+   .round-button-circle {
+   width: 100%;
+   height:0;
+   padding-bottom: 100%;
+   border-radius: 50%;
+   overflow:hidden;
+   background: #2E7D32; 
+   box-shadow: 0 0 3px gray;
+   }
+   .round-button-circle:hover {
+   background:#F44336;
+   cursor: pointer;
+   }
+   .round-button a {
+   display:block;
+   float:left;
+   width:100%;
+   padding-top:50%;
+   padding-bottom:50%;
+   line-height:1em;
+   margin-top:-0.5em;
+   text-align:center;
+   color:#e2eaf3;
+   font-family:Verdana;
+   font-size:1.2em;
+   font-weight:bold;
+   text-decoration:none;
+   }
+   @media(min-width: 200px){
+   .round-button {
+   width: 15px;
+   }
+   }
+   @media(min-width: 500px){
+   .round-button {
+   width:20px;
+   }
+   }
+   @media(min-width: 700px){
+   .round-button {
+   width:35px;
+   }
 </style>
 <div >
-<center><img src="../../../styles/indh.jpg"></center>
-<center><h4> Modification des collaborateurs</h4><br></center>
-    <div class="row">
+   <center><img src="../../../styles/indh.jpg"></center>
+   <center>
+      <h4> Modification des collaborateurs</h4>
+      <br>
+   </center>
+   <div class="row">
       <div class="col-lg-4">
-        <select ng-model="myDropDown" class="form-control pull-right">
+         <select ng-model="myDropDown" class="form-control pull-right">
             <option value="lab">Laboratoire</option>
             <option value="bet">BET</option>
             <option value="soc">société</option>
             <option value="archi">Architect</option>
             <option value="mai">Maitre d'ouvrage</option>
-      </select>
+         </select>
       </div>
       <div class="col-lg-2 col-lg-offset-0">
-            <div class="round-button">
-              <div class="round-button-circle">
-                <a  class="round-button" data-toggle="modal" data-target="#collabModal">
-                  +
-                </a>
-              </div>
+         <div class="round-button">
+            <div class="round-button-circle">
+               <a  class="round-button" data-toggle="modal" data-target="#collabModal">
+               +
+               </a>
             </div>
-          </div>
-    </div>
-    <br>
-    <table ng-show="myDropDown=='archi'" id="collab" class="table table-bordered table-striped table-hovered">
+         </div>
+      </div>
+   </div>
+   <br>
+   <table ng-show="myDropDown=='archi'" id="collab" class="table table-bordered table-striped table-hovered">
       <thead>
-        <tr>
-          <th class="text-center">Nom de l'architecte</th>
-          <th class="text-center">Telephone</th>
-          <th class="text-center"> Fax </th>
-          <th class="text-center">email</th>
-          <th class="text-center">Adresse</th>
-        </tr>
+         <tr>
+            <th class="text-center">Nom de l'architecte</th>
+            <th class="text-center">Telephone</th>
+            <th class="text-center"> Fax </th>
+            <th class="text-center">email</th>
+            <th class="text-center">Adresse</th>
+         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="archi in archis track by $index"  
+         <tr ng-repeat="archi in archis track by $index"  
             ng-click="modifArch($index)" 
             ng-mouseover="m = 1" ng-mouseleave="m=0" data-toggle="modal" data-target="#archModal">
-          <td  class="text-center">{{archi.name_archi}}</td>
-          <td  class="text-center">{{archi.tel_archi}}</td>
-          <td  class="text-center">{{archi.fax_archi}}</td>
-          <td  class="text-center">{{archi.email_archi}}</td>
-          <td  class="text-center">{{archi.adresse_archi}}</td>
-        
-        </tr>
+            <td  class="text-center">{{archi.name_archi}}</td>
+            <td  class="text-center">{{archi.tel_archi}}</td>
+            <td  class="text-center">{{archi.fax_archi}}</td>
+            <td  class="text-center">{{archi.email_archi}}</td>
+            <td  class="text-center">{{archi.adresse_archi}}</td>
+         </tr>
       </tbody>
-    </table>
-
-    <table ng-show="myDropDown=='lab'" id="collab" class="table table-bordered table-striped table-hovered">
+   </table>
+   <table ng-show="myDropDown=='lab'" id="collab" class="table table-bordered table-striped table-hovered">
       <thead>
-        <tr>
-          <th class="text-center">Nom du laboratoire</th>
-          <th class="text-center">Telephone</th>
-          <th class="text-center"> Fax </th>
-          <th class="text-center">email</th>
-          <th class="text-center">Adresse</th>
-        </tr>
+         <tr>
+            <th class="text-center">Nom du laboratoire</th>
+            <th class="text-center">Telephone</th>
+            <th class="text-center"> Fax </th>
+            <th class="text-center">email</th>
+            <th class="text-center">Adresse</th>
+         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="lab in labos track by $index"  
+         <tr ng-repeat="lab in labos track by $index"  
             ng-click="modifLab($index)" 
             ng-mouseover="m = 1" ng-mouseleave="m=0" data-toggle="modal" data-target="#labModal">
-          <td  class="text-center">{{lab.name_labo}}</td>
-          <td  class="text-center">{{lab.tel_labo}}</td>
-          
-          <td  class="text-center">{{lab.fax_labo}}</td>
-          <td  class="text-center">{{lab.email_labo}}</td>
-          <td  class="text-center">{{lab.adresse_labo}}</td>
-        
-        </tr>
+            <td  class="text-center">{{lab.name_labo}}</td>
+            <td  class="text-center">{{lab.tel_labo}}</td>
+            <td  class="text-center">{{lab.fax_labo}}</td>
+            <td  class="text-center">{{lab.email_labo}}</td>
+            <td  class="text-center">{{lab.adresse_labo}}</td>
+         </tr>
       </tbody>
-    </table>
-    <table ng-show="myDropDown=='bet'" id="collab" class="table table-bordered table-striped table-hovered">
+   </table>
+   <table ng-show="myDropDown=='bet'" id="collab" class="table table-bordered table-striped table-hovered">
       <thead>
-        <tr>
-          <th class="text-center">Nom du Bureau d'etude</th>
-          <th class="text-center">Telephone</th>
-          <th class="text-center"> Fax </th>
-          <th class="text-center">email</th>
-          <th class="text-center">Adresse</th>
-          <th  class="text-center">    </th>
-        </tr>
+         <tr>
+            <th class="text-center">Nom du Bureau d'etude</th>
+            <th class="text-center">Telephone</th>
+            <th class="text-center"> Fax </th>
+            <th class="text-center">email</th>
+            <th class="text-center">Adresse</th>
+            <th  class="text-center">    </th>
+         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="bet in bets track by $index"  
+         <tr ng-repeat="bet in bets track by $index"  
             ng-click="modifBet($index)" 
             ng-mouseover="m = 1" ng-mouseleave="m=0"  class="round-button" data-toggle="modal" data-target="#betModal">
-          <td  class="text-center">{{bet.name_bet}}</td>
-          <td  class="text-center">{{bet.tel_bet}}</td>
-          
-          <td  class="text-center">{{bet.fax_bet}}</td>
-          <td  class="text-center">{{bet.email_bet}}</td>
-          <td  class="text-center">{{bet.adresse_bet}}</td>
-        
-        </tr>
+            <td  class="text-center">{{bet.name_bet}}</td>
+            <td  class="text-center">{{bet.tel_bet}}</td>
+            <td  class="text-center">{{bet.fax_bet}}</td>
+            <td  class="text-center">{{bet.email_bet}}</td>
+            <td  class="text-center">{{bet.adresse_bet}}</td>
+         </tr>
       </tbody>
-    </table>
-    <table ng-show="myDropDown=='soc'" id="collab" class="table table-bordered table-striped table-hovered" >
+   </table>
+   <table ng-show="myDropDown=='soc'" id="collab" class="table table-bordered table-striped table-hovered" >
       <thead>
-        <tr>
-          <th class="text-center">Nom de la societe</th>
-          <th class="text-center">Telephone</th>
-          <th class="text-center"> Fax </th>
-          <th class="text-center">email</th>
-          <th class="text-center">Adresse</th>
-        </tr>
+         <tr>
+            <th class="text-center">Nom de la societe</th>
+            <th class="text-center">Telephone</th>
+            <th class="text-center"> Fax </th>
+            <th class="text-center">email</th>
+            <th class="text-center">Adresse</th>
+         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="soc in societes track by $index"  
+         <tr ng-repeat="soc in societes track by $index"  
             ng-click="modifSoc($index)" 
             ng-mouseover="m = 1" ng-mouseleave="m=0" data-toggle="modal" data-target="#socModal">
-          <td  class="text-center">{{soc.name_societe}}</td>
-          <td  class="text-center">{{soc.tel_societe}}</td>
-          
-          <td  class="text-center">{{soc.fax_societe}}</td>
-          <td  class="text-center">{{soc.email_societe}}</td>
-          <td  class="text-center">{{soc.adresse_societe}}</td>
-        </tr>
+            <td  class="text-center">{{soc.name_societe}}</td>
+            <td  class="text-center">{{soc.tel_societe}}</td>
+            <td  class="text-center">{{soc.fax_societe}}</td>
+            <td  class="text-center">{{soc.email_societe}}</td>
+            <td  class="text-center">{{soc.adresse_societe}}</td>
+         </tr>
       </tbody>
-    </table>
-    <table ng-show="myDropDown=='mai'" id="collab" class="table table-bordered table-striped table-hovered">
+   </table>
+   <table ng-show="myDropDown=='mai'" id="collab" class="table table-bordered table-striped table-hovered">
       <thead>
-        <tr>
-          <th class="text-center">Nom du maitre d'ouvrage</th>
-          <th class="text-center">Telephone</th>
-          <th class="text-center"> Fax </th>
-          <th class="text-center">email</th>
-          <th class="text-center">Adresse</th>
-        </tr>
+         <tr>
+            <th class="text-center">Nom du maitre d'ouvrage</th>
+            <th class="text-center">Telephone</th>
+            <th class="text-center"> Fax </th>
+            <th class="text-center">email</th>
+            <th class="text-center">Adresse</th>
+         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="maitre in maitres track by $index"  
+         <tr ng-repeat="maitre in maitres track by $index"  
             ng-click="modifMaitre($index)" 
             ng-mouseover="m = 1" ng-mouseleave="m=0" data-toggle="modal" data-target="#maitreModal">
-          <td  class="text-center">{{maitre.name_maitre_ouvrage}}</td>
-          <td  class="text-center">{{maitre.tel_maitre_ouvrage}}</td>
-          
-          <td  class="text-center">{{maitre.fax_maitre_ouvrage}}</td>
-          <td  class="text-center">{{maitre.email_maitre_ouvrage}}</td>
-          <td  class="text-center">{{maitre.adresse_maitre_ouvrage}}</td>
-        </tr>
+            <td  class="text-center">{{maitre.name_maitre_ouvrage}}</td>
+            <td  class="text-center">{{maitre.tel_maitre_ouvrage}}</td>
+            <td  class="text-center">{{maitre.fax_maitre_ouvrage}}</td>
+            <td  class="text-center">{{maitre.email_maitre_ouvrage}}</td>
+            <td  class="text-center">{{maitre.adresse_maitre_ouvrage}}</td>
+         </tr>
       </tbody>
-    </table>
-    <div  id="betModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modifier bureau d'etude</h4>
+   </table>
+   <div  id="betModal" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">Modifier bureau d'etude</h4>
+            </div>
+            <div class="modal-body">
+               <form name="betForm">
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Nom du BET
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':betForm.nom.$invalid}">
+                              <input class="form-control" name="nom"  ng-required ng-model="newBet.name_bet" type="text" >
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           E-mail du BET
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':betForm.email.$invalid}">
+                              <input class="form-control" name="email" ng-required ng-model="newBet.email_bet" type="email">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Telephone du BET
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':betForm.tel.$invalid}">
+                              <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newBet.tel_bet" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Fax du BET
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':betForm.fax.$invalid}">
+                              <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newBet.fax_bet" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Adresse du BET
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':betForm.address.$invalid}">
+                              <input class="form-control" name="address" ng-minlength="5" ng-maxlength="100" ng-required ng-model="newBet.adresse_bet" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                     <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newBet,'bet')" ng-disabled="betForm.$invalid">Sauvegarder</button>
+                  </div>
+               </form>
+            </div>
+         </div>
       </div>
-      <div class="modal-body">
-        <form name="betForm">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Nom du BET
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':betForm.nom.$invalid}">
-                  <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="newBet.name_bet" type="text" >
-                </div>
-              </div>
+   </div>
+   <div  id="labModal" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">Modifier Laboratoire</h4>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  E-mail du BET
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':betForm.email.$invalid}">
-                  <input class="form-control" name="email" ng-required ng-model="newBet.email_bet" type="email">
-                </div>
-              </div>
+            <div class="modal-body">
+               <form name="labForm">
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Nom du Laboratoire
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':labForm.nom.$invalid}">
+                              <input class="form-control" name="nom"  ng-required ng-model="newLab.name_labo" type="text" >
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           E-mail du Laboratoire
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':labForm.email.$invalid}">
+                              <input class="form-control" name="email" ng-required ng-model="newLab.email_labo" type="email">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Telephone du Laboratoire
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':labForm.tel.$invalid}">
+                              <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newLab.tel_labo" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Fax du Laboratoire
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':labForm.fax.$invalid}">
+                              <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newLab.fax_labo" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Adresse du Laboratoire
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':labForm.address.$invalid}">
+                              <input class="form-control" name="address" ng-minlength="5" ng-maxlength="100" ng-required ng-model="newLab.adresse_labo" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                     <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newLab,'lab')" ng-disabled="labForm.$invalid">Sauvegarder</button>
+                  </div>
+               </form>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Telephone du BET
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':betForm.tel.$invalid}">
-                  <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newBet.tel_bet" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Fax du BET
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':betForm.fax.$invalid}">
-                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newBet.fax_bet" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Adresse du BET
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':betForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="newBet.adresse_bet" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newBet,'bet')" ng-disabled="betForm.$invalid">Sauvegarder</button>
-          </div>
-        </form>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
+   <div  id="archModal" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">
+               Modifier les information de l'architecte/h4>
+            </div>
+            <div class="modal-body">
+               <form name="archiForm">
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Nom de l'architecte'
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':archiForm.nom.$invalid}">
+                              <input class="form-control" name="nom"  ng-required ng-model="newArch.name_archi" type="text" >
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           E-mail de l'architecte
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':archiForm.email.$invalid}">
+                              <input class="form-control" name="email" ng-required ng-model="newArch.email_archi" type="email">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Telephone de l'architecte
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':archiForm.tel.$invalid}">
+                              <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newArch.tel_archi" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Fax de l'architecte
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':archiForm.fax.$invalid}">
+                              <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newArch.fax_archi" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Adresse de l'architecte
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':archiForm.address.$invalid}">
+                              <input class="form-control" name="address" ng-minlength="5" ng-maxlength="100" ng-required ng-model="newArch.adresse_archi" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                     <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newArch,'arch')" ng-disabled="archiForm.$invalid">Sauvegarder</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div  id="socModal" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">Modifier les information de la societe</h4>
+            </div>
+            <div class="modal-body">
+               <form name="socForm">
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Nom de la societe
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':socForm.nom.$invalid}">
+                              <input class="form-control" name="nom"  ng-required ng-model="newSoc.name_societe" type="text" >
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           E-mail de la societe
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':socForm.email.$invalid}">
+                              <input class="form-control" name="email" ng-required ng-model="newSoc.email_societe" type="email">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Telephone de la societe
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':socForm.tel.$invalid}">
+                              <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newSoc.tel_societe" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Fax de la societe
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':socForm.fax.$invalid}">
+                              <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newSoc.fax_societe" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Adresse de la societe
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':socForm.address.$invalid}">
+                              <input class="form-control" name="address" ng-minlength="5" ng-maxlength="100" ng-required ng-model="newSoc.adresse_societe" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                     <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newSoc,'soc')" ng-disabled="socForm.$invalid">Sauvegarder</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div  id="maitreModal" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">Modifier Laboratoire</h4>
+            </div>
+            <div class="modal-body">
+               <form name="maitreForm">
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Nom du maitre d'ouvrage
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':maitreForm.nom.$invalid}">
+                              <input class="form-control" name="nom"  ng-required ng-model="newMaitre.name_maitre_ouvrage" type="text" >
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           E-mail du maitre d'ouvrage
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':maitreForm.email.$invalid}">
+                              <input class="form-control" name="email" ng-required ng-model="newMaitre.email_maitre_ouvrage" type="email">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Telephone du maitre d'ouvrage
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':maitreForm.tel.$invalid}">
+                              <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newMaitre.tel_maitre_ouvrage" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Fax du maitre d'ouvrage
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':maitreForm.fax.$invalid}">
+                              <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newMaitre.fax_maitre_ouvrage" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           Adresse du maitre d'ouvrage
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':maitreForm.address.$invalid}">
+                              <input class="form-control" name="address" ng-minlength="5" ng-maxlength="100" ng-required ng-model="newMaitre.adresse_maitre_ouvrage" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                     <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newMaitre,'maitre')" ng-disabled="maitreForm.$invalid">Sauvegarder</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div ng-show="user.type=='admin'">
+      <center>
+         <h4>Gestion des utilisateurs </h4>
+         <br>
+         <h5>Liste des utilisateurs existants</h5>
+      </center>
+      <table id="users" class="table table-bordered table-striped table-hovered">
+         <thead>
+            <tr>
+               <th class="text-center">Nom de l'utilisateur</th>
+               <th class="text-center">Email de l'utilisateur</th>
+               <th class="text-center">Mot de passe</th>
+               <th class="text-center">Type de compte</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr ng-repeat="u in users track by $index"  
+               ng-click="modifUser($index)" 
+               data-toggle="modal" data-target="#userModal">
+               <td  class="text-center">{{u.name}}</td>
+               <td  class="text-center">{{u.email}}</td>
+               <td  class="text-center">{{u.password}}</td>
+               <td  class="text-center">{{u.type}}</td>
+            </tr>
+         </tbody>
+      </table>
+      <form class="form-horizontal">
+         <fieldset>
+            <legend><center>Ajouter un nouveau utilisateur</center></legend>
+            <div class="form-group">
+               <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                     <label for="Nom" class="control-label"><b>Nom de l'utilisateur</b></label>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                     <input class="form-control" name="Nom" ng-model="user1.name" placeholder="Nom de l'utilisateur"  type="text">
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                      <label for="Email" class="control-label"><b>Email de l'utilisateur</b></label>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                     <input class="form-control" name="Email" ng-model="user1.email" placeholder="Email de l'utilisateur"  type="email">
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                      <label for="password" class="control-label"><b>Mot de passe de l'utilisateur</b></label>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                     <input class="form-control" name="password" ng-model="user1.password" placeholder="Email de l'utilisateur"  type="text">
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                     <label class="control-label">
+                        <b> Type de compte  </b>
+                     </label>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                     <div ng-class="{'has-error':userForm.type.$invalid}">
+                        <select class="form-control" ng-model="user1.type">
+                           <option value="admin">Administrateur</option>
+                           <option value="editor">Modificateur</option>
+                           <option value="visitor">Visiteur</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="row ">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                     <a class="btn btn-danger button-block" ng-click="cancelSaveUser()">Annuler</a>
+                     <a class="btn btn-success button-block" ng-click="saveUser1()">Enregistrer </a>
+                  </div>
+               </div>
+            </div>
+         </fieldset>
+      </form>
+   </div>
+   <div  id="userModal" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               <h4 class="modal-title">Modifier les informations de l'utilisateur</h4>
+            </div>
+            <div class="modal-body">
+               <form name="userForm">
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           <b>Nom de l'utilisateur</b>
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':userForm.name.$invalid}">
+                              <input class="form-control" name="nom"  ng-required ng-model="newUser.name" type="text" >
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           <b> E-mail de l'utilisateur </b>
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':userForm.email.$invalid}">
+                              <input class="form-control" name="email" ng-required ng-model="newUser.email" type="email">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <label class="control-label">
+                           <b>  mot de passe de l'utilisateur </b>
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':userForm.password.$invalid}">
+                              <input class="form-control" ng-required ng-model="newUser.password" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                           <label class="control-label">
+                           <b> Type de compte  </b>
+                           </label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                           <div ng-class="{'has-error':userForm.type.$invalid}">
+                              <select class="form-control" ng-change="changeType(newUser.type)" ng-model="newUser.type">
+                                 <option value="admin">Administrateur</option>
+                                 <option value="editor">Modificateur</option>
+                                 <option value="visitor">Visiteur</option>
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                     <button type="button" class="btn btn-primary" ng-click="saveUser(newUser)" ng-disabled="userForm.$invalid">Sauvegarder</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
-
-
-
-<div  id="labModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modifier Laboratoire</h4>
-      </div>
-      <div class="modal-body">
-        <form name="labForm">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Nom du Laboratoire
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.nom.$invalid}">
-                  <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="newLab.name_labo" type="text" >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  E-mail du Laboratoire
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.email.$invalid}">
-                  <input class="form-control" name="email" ng-required ng-model="newLab.email_labo" type="email">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Telephone du Laboratoire
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.tel.$invalid}">
-                  <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newLab.tel_labo" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Fax du Laboratoire
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.fax.$invalid}">
-                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newLab.fax_labo" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Adresse du Laboratoire
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':labForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="newLab.adresse_labo" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newLab,'lab')" ng-disabled="labForm.$invalid">Sauvegarder</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div  id="archModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modifier les information de l'architecte/h4>
-      </div>
-      <div class="modal-body">
-        <form name="archiForm">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Nom de l'architecte'
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':archiForm.nom.$invalid}">
-                  <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="newArch.name_archi" type="text" >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  E-mail de l'architecte
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':archiForm.email.$invalid}">
-                  <input class="form-control" name="email" ng-required ng-model="newArch.email_archi" type="email">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Telephone de l'architecte
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':archiForm.tel.$invalid}">
-                  <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newArch.tel_archi" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Fax de l'architecte
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':archiForm.fax.$invalid}">
-                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newArch.fax_archi" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Adresse de l'architecte
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':archiForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="newArch.adresse_archi" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newArch,'arch')" ng-disabled="archiForm.$invalid">Sauvegarder</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div  id="socModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modifier les information de la societe</h4>
-      </div>
-      <div class="modal-body">
-        <form name="socForm">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Nom de la societe
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':socForm.nom.$invalid}">
-                  <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="newSoc.name_societe" type="text" >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  E-mail de la societe
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':socForm.email.$invalid}">
-                  <input class="form-control" name="email" ng-required ng-model="newSoc.email_societe" type="email">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Telephone de la societe
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':socForm.tel.$invalid}">
-                  <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newSoc.tel_societe" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Fax de la societe
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':socForm.fax.$invalid}">
-                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newSoc.fax_societe" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Adresse de la societe
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':socForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="newSoc.adresse_societe" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newSoc,'soc')" ng-disabled="socForm.$invalid">Sauvegarder</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div  id="maitreModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modifier Laboratoire</h4>
-      </div>
-      <div class="modal-body">
-        <form name="maitreForm">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Nom du maitre d'ouvrage
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':maitreForm.nom.$invalid}">
-                  <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="newMaitre.name_maitre_ouvrage" type="text" >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  E-mail du maitre d'ouvrage
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':maitreForm.email.$invalid}">
-                  <input class="form-control" name="email" ng-required ng-model="newMaitre.email_maitre_ouvrage" type="email">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Telephone du maitre d'ouvrage
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':maitreForm.tel.$invalid}">
-                  <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newMaitre.tel_maitre_ouvrage" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Fax du maitre d'ouvrage
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':maitreForm.fax.$invalid}">
-                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newMaitre.fax_maitre_ouvrage" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  Adresse du maitre d'ouvrage
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':maitreForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="newMaitre.adresse_maitre_ouvrage" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveCollaborator(newMaitre,'maitre')" ng-disabled="maitreForm.$invalid">Sauvegarder</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div ng-show="user.type=='admin'">
-  <center><h4>Gestion des utilisateurs </h4><br></center>
-  <table id="users" class="table table-bordered table-striped table-hovered">
-      <thead>
-        <tr>
-          <th class="text-center">Nom de l'utilisateur</th>
-          <th class="text-center">Email de l'utilisateur</th>
-          <th class="text-center">Mot de passe</th>
-          <th class="text-center">Type de compte</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="u in users track by $index"  
-            ng-click="modifUser($index)" 
-             data-toggle="modal" data-target="#userModal">
-          <td  class="text-center">{{u.name}}</td>
-          <td  class="text-center">{{u.email}}</td>
-          <td  class="text-center">{{u.password}}</td>
-          <td  class="text-center">{{u.type}}</td>        
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div  id="userModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modifier les informations de l'utilisateur</h4>
-      </div>
-      <div class="modal-body">
-        <form name="userForm">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  <b>Nom de l'utilisateur</b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':userForm.name.$invalid}">
-                  <input class="form-control" name="nom"  ng-required ng-model="newUser.name" type="text" >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                 <b> E-mail de l'utilisateur </b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':userForm.email.$invalid}">
-                  <input class="form-control" name="email" ng-required ng-model="newUser.email" type="email">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                <b>  mot de passe de l'utilisateur </b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':userForm.password.$invalid}">
-                  <input class="form-control" ng-required ng-model="newUser.password" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4 col-md-4">
-                <label class="control-label">
-                 <b> Type de compte  </b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':userForm.type.$invalid}">
-                  <select class="form-control" ng-change="changeType(newUser.type)" ng-model="newUser.type">
-                    <option value="admin">Administrateur</option>
-                    <option value="editor">Modificateur</option>
-                    <option value="visitor">Visiteur</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveUser(newUser)" ng-disabled="userForm.$invalid">Sauvegarder</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
 <!--pour ajouter un nouveau collaborateur-->
-
 <div  id="collabModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Ajouter un nouveau collaborateur</h4>
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Ajouter un nouveau collaborateur</h4>
+         </div>
+         <div class="modal-body">
+            <form name="collabForm">
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        <b> Type du collaborateur </b>
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':collabForm.nom.$invalid}">
+                           <select ng-model="newCollab.type" class="form-control" required>
+                              <option value="archi">Architecte</option>
+                              <option value="lab">Laboratoire</option>
+                              <option value="bet">Bureau d'études</option>
+                              <option value="maitre">Maitre d'ouvrages</option>
+                              <option value="soc">Société</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        <b> Nom du collaborateur </b>
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':collabForm.fax.$invalid}">
+                           <input class="form-control"  ng-required ng-model="newCollab.name" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        <b> E-mail du collaborateur </b>
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':collabForm.email.$invalid}">
+                           <input class="form-control" name="email" ng-required ng-model="newCollab.email" type="email">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        <b>Telephone du collaborateur</b>
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':collabForm.tel.$invalid}">
+                           <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newCollab.tel" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        <b> Fax du collaborateur </b>
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':collabForm.fax.$invalid}">
+                           <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newCollab.fax" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <label class="control-label">
+                        <b> Adresse du collaborateur </b>
+                        </label>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div ng-class="{'has-error':collabForm.address.$invalid}">
+                           <input class="form-control" name="address" ng-minlength="5" ng-maxlength="100" ng-required ng-model="newCollab.adresse" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                  <button type="button" class="btn btn-primary" ng-click="saveCollab(newCollab)" ng-disabled="labForm.$invalid">Sauvegarder</button>
+               </div>
+            </form>
+         </div>
       </div>
-      <div class="modal-body">
-        <form name="collabForm">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  <b> Type du collaborateur </b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':collabForm.nom.$invalid}">
-                  <select ng-model="newCollab.type" class="form-control" required>
-                  <option value="archi">Architecte</option>
-                  <option value="lab">Laboratoire</option>
-                  <option value="bet">Bureau d'études</option>
-                  <option value="maitre">Maitre d'ouvrages</option>
-                  <option value="soc">Société</option>
-                </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  <b> Nom du collaborateur </b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':collabForm.fax.$invalid}">
-                  <input class="form-control"  ng-required ng-model="newCollab.name" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                 <b> E-mail du collaborateur </b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':collabForm.email.$invalid}">
-                  <input class="form-control" name="email" ng-required ng-model="newCollab.email" type="email">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  <b>Telephone du collaborateur</b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':collabForm.tel.$invalid}">
-                  <input class="form-control" name="tel" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newCollab.tel" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                  <b> Fax du collaborateur </b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':collabForm.fax.$invalid}">
-                  <input class="form-control" name="fax" ng-pattern="/^[0-9]{10}$/" ng-required ng-model="newCollab.fax" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-4">
-                <label class="control-label">
-                 <b> Adresse du collaborateur </b>
-                </label>
-              </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <div ng-class="{'has-error':collabForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="newCollab.adresse" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" ng-click="saveCollab(newCollab)" ng-disabled="labForm.$invalid">Sauvegarder</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+   </div>
 </div>

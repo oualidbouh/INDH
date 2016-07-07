@@ -1,5 +1,6 @@
 
 app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$filter,collaborators,marketsFactory,authService) {
+	
 	toastr.options = {
   						"closeButton": true,
   						"debug": false,
@@ -20,10 +21,11 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 	$scope.montant = "";
 	$scope.avenant ="";
 	$scope.error = {};
+
 		if($rootScope.year == undefined && $rootScope.budgetType == undefined){
 			$location.path("/");
-		}else{
-
+		}
+		else{
 					$http.get("/market/"+$rootScope.market.id+"/decomptes")
 						.success(function(res) {
 							$rootScope.market.decomptes = res;

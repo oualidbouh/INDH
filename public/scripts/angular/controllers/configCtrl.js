@@ -14,30 +14,32 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 
 
 	else {
-	$scope.newUser = {};
-	$scope.archis = [];
-	$scope.labos = [];
-	$scope.bets = [];
-	$scope.societes = [];
-	$scope.maitres = [];
-	$scope.newLab = {};
-	$scope.newBet = {};
-	$scope.newArch = {};
-	$scope.newMaitre = {};
-	$scope.newSoc = {};
-	$scope.obj = {};
-	$scope.myDropDown = "mai";
-	 collaborators.getAll().success(function(res){
-	 	$scope.archis = res.architectes;
-	 	$scope.labos = res.labos;
-	 	$scope.bets = res.bets;
-	 	$scope.societes = res.societes;
-	 	$scope.maitres = res.maitreOuvrages; 	
+		
+		$rootScope.position = "Page de configuration";
+		$scope.newUser = {};
+		$scope.archis = [];
+		$scope.labos = [];
+		$scope.bets = [];
+		$scope.societes = [];
+		$scope.maitres = [];
+		$scope.newLab = {};
+		$scope.newBet = {};
+		$scope.newArch = {};
+		$scope.newMaitre = {};
+		$scope.newSoc = {};
+		$scope.obj = {};
+		$scope.myDropDown = "mai";
+	 	collaborators.getAll().success(function(res){
+	 		$scope.archis = res.architectes;
+	 		$scope.labos = res.labos;
+	 		$scope.bets = res.bets;
+	 		$scope.societes = res.societes;
+	 		$scope.maitres = res.maitreOuvrages; 	
 
-	 })
-	 .error(function(){
-	 	alert("erreur")
-	 });
+	 	})
+	 		.error(function(){
+	 	toastr.error('Erreur lors du chargement des collaborateurs ');
+	 	});
 
 	 /* permet de transmettre les information d'un collaborateur au modal de modification quand 
 	 l'utilisateur click sur un marché  */
@@ -84,6 +86,15 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 	userFactory.getUsers().success(function(res){
 		
 		$scope.users = res;
+		var index = 0;
+		console.log($scope.user);
+		for(var i=0; i < $scope.users.length;i++){
+			if($scope.users.id === $rootScope.user.id){
+				index = i;
+			}
+		} 
+		
+		$scope.users.splice(index, 1);
 		
 	}).error(function(){
 		toastr.warning("erreur lors du chargements des utilisateurs !");
@@ -108,8 +119,9 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 			return ; 
 		}
 	}
-		return ; 
+		return; 
 	}
+
 	$scope.modifUser = function(i){
 		
 		$scope.newUser = $scope.users[i];		
@@ -183,6 +195,7 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 		}
 
 			collaborators.postCollabrator(newCollab).success(function(res){
+
 				if($scope.newCollab.type === 'archi'){
 					var a = {};
 					a.name_archi = $scope.newCollab.name;
@@ -190,9 +203,9 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 					a.fax_archi = $scope.newCollab.fax;
 					a.tel_archi = $scope.newCollab.tel;
 					a.adresse_archi = $scope.newCollab.adresse;
-					console.log(a);
 					$scope.archis.push(a);
 				}
+
 				if($scope.newCollab.type === 'lab'){
 					var a = {};
 					a.name_labo = $scope.newCollab.name;
@@ -200,9 +213,9 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 					a.fax_labo = $scope.newCollab.fax;
 					a.tel_labo = $scope.newCollab.tel;
 					a.adresse_labo = $scope.newCollab.adresse;
-					console.log(a);
 					$scope.labos.push(a);
 				}
+
 				if($scope.newCollab.type === 'bet'){
 					var a = {};
 					a.name_bet = $scope.newCollab.name;
@@ -210,9 +223,9 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 					a.fax_bet = $scope.newCollab.fax;
 					a.tel_bet = $scope.newCollab.tel;
 					a.adresse_bet = $scope.newCollab.adresse;
-					console.log(a);
 					$scope.bets.push(a);
 				}
+
 				if($scope.newCollab.type === 'maitre'){
 					var a = {};
 					a.name_maitre_ouvrage = $scope.newCollab.name;
@@ -220,7 +233,6 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 					a.fax_maitre_ouvrage = $scope.newCollab.fax;
 					a.tel_maitre_ouvrage = $scope.newCollab.tel;
 					a.adresse_maitre_ouvrage = $scope.newCollab.adresse;
-					console.log(a);
 					$scope.maitres.push(a);
 				}
 				if($scope.newCollab.type === 'soc'){
@@ -230,16 +242,40 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 					a.fax_societe = $scope.newCollab.fax;
 					a.tel_societe = $scope.newCollab.tel;
 					a.adresse_societe = $scope.newCollab.adresse;
-					console.log(a);
 					$scope.societes.push(a);
 				}
+
 				$("#collabModal").modal("toggle");
-				toastr.success("l'architecte a été ajouté avec succés");
+				toastr.success("le collaborateur a été ajouté avec succés");
 				$scope.newCollab = {};
 			}).error(function(){
-				toastr.error("erreur lors de l'ajout de l'architecte");
+				toastr.error("erreur lors de l'ajout du collaborateur");
 			});
 
+		}
 	}
+
+	$scope.saveUser1 = function(){
+		
+			for(var i = 0; i < $scope.users.length ; i++){
+				if($scope.users[i].name === $scope.user1.name){
+					toastr.error("le nom de l'utilisateur doit etre unique ! ");
+					return;
+				}
+			}
+		
+		userFactory.postUser($scope.user1).success(function(res){
+			toastr.success("L'utilisateur a été ajouté avec succés !");
+			$scope.users.push($scope.user1);
+		}).error(function(){
+			toastr.error("erreur lors de l'ajout de l'utilisateur !");
+		});
 	}
+
+	$scope.cancelSaveUser = function(){
+		$scope.user1 = {};
+		$scope.user1.email = "";
+	}
+
+
 });

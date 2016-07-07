@@ -27,4 +27,5 @@ app.controller("homeCtrl",function($scope,$rootScope,$location,authService) {
 	}
 	$scope.selectYear(0);
 	}
+	$rootScope.position = "Acceuil";
 });

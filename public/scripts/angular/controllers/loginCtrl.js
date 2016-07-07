@@ -1,6 +1,7 @@
 
 app.controller("loginCtrl",function ($rootScope,$scope,$location ,authService) {
 	//console.log($rootScope.user)
+	$rootScope.position = "Authentification";
 	if($rootScope.user == undefined){
 
 		$scope.login = function () {

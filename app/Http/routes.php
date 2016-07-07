@@ -22,6 +22,7 @@ Route::get("/collaborators/all","CollaboratorCtrl@getAll");
 Route::get('/pdf/market/{id}',"marchesCtrl@downloadPdf");
 Route::get("/market/images/{id}","marchesCtrl@getImages");
 Route::get("/users","UserController@getUsers");
+
 /*POST REQUEST*/
 Route::post("/labos","CollaboratorCtrl@postLabos");
 Route::post("/bets","CollaboratorCtrl@postBets");
@@ -35,6 +36,8 @@ Route::post('/mail','CollaboratorCtrl@sendMail');
 Route::post('/login','marchesCtrl@login');
 Route::post("/upload","marchesCtrl@postImage");
 Route::post('collaborateur','CollaboratorCtrl@postNewCollaborator');
+Route::post('/users','UserController@addUser');
+
 /*PUT REQUEST*/
 Route::put("/collaborators/update","CollaboratorCtrl@putCollaborator");
 Route::put("/market/{id}","marchesCtrl@putMarket");

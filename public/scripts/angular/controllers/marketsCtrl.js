@@ -4,6 +4,9 @@ app.controller("marketsCtrl",function ($scope,$rootScope,$location,marketsFactor
 	$scope.error = {};
 	$scope.confirm = {};
 	if($rootScope.year && $rootScope.budgetType){
+
+			$rootScope.position = "Liste des Marchés du type : "+$rootScope.budgetType+" de l'an "+$rootScope.year;
+
 			marketsFactory.getMarkets($rootScope.year,$rootScope.budgetType)
 				.success(function (res){
 					$scope.markets = res;
