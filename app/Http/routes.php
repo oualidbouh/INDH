@@ -6,7 +6,10 @@ Route::get('/', function () {
 
 /*GET REQUEST*/
 
-Route::get('/excel','ExcelController@getExcel');
+
+
+
+Route::get('/excel/{type}/{year}','ExcelController@getExcel');
 Route::get("/markets/{year}/{type}","marchesCtrl@getMarkets");
 Route::get("/labos","CollaboratorCtrl@getLabos");
 Route::get("/bets","CollaboratorCtrl@getBets");
@@ -48,5 +51,6 @@ Route::delete("market/delete/{id}","marchesCtrl@deleteMarket");
 Route::delete("/decompte/delete/{id}","marchesCtrl@deleteDecompte");
 Route::delete("/avenant/delete/{id}","marchesCtrl@deleteAvenant");
 Route::delete("/market/images/{iid}","marchesCtrl@deleteImage");
+Route::delete("/user/delete/{id}","UserController@deleteUser");
 
 ?>

@@ -265,7 +265,21 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 		
 		userFactory.postUser($scope.user1).success(function(res){
 			toastr.success("L'utilisateur a été ajouté avec succés !");
-			$scope.users.push($scope.user1);
+			$scope.users=[];
+					userFactory.getUsers().success(function(res){
+		
+		$scope.users = res;
+		var index1 = 0;
+		for(var i=0; i < $scope.users.length;i++){
+			if($scope.users.id === $rootScope.user.id){
+				index = i;
+			}
+		} 
+		
+		$scope.users.splice(index1, 1);
+		
+	});
+			$scope.user1 = {};
 		}).error(function(){
 			toastr.error("erreur lors de l'ajout de l'utilisateur !");
 		});
@@ -274,6 +288,28 @@ app.controller("configCtrl",function ($scope,$location,$rootScope,collaborators,
 	$scope.cancelSaveUser = function(){
 		$scope.user1 = {};
 		$scope.user1.email = "";
+	}
+
+	$scope.deleteUser = function(index){
+		console.log($scope.users[index]);
+		userFactory.deleteUser($scope.users[index].id).success(function(res){
+			userFactory.getUsers().success(function(res){
+		
+		$scope.users = res;
+		var index1 = 0;
+		for(var i=0; i < $scope.users.length;i++){
+			if($scope.users.id === $rootScope.user.id){
+				index = i;
+			}
+		} 
+		
+		$scope.users.splice(index1, 1);
+		
+	});
+			toastr.success("L'utilisateur a été supprimé avec succés");
+		}).error(function(){
+			toastr.error("Erreur lors de la suppréssion de l'utilisateur");
+		});
 	}
 
 

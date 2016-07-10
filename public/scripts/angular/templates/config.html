@@ -49,7 +49,6 @@
    }
 </style>
 <div >
-   <center><img src="../../../styles/indh.jpg"></center>
    <center>
       <h4> Modification des collaborateurs</h4>
       <br>
@@ -643,13 +642,16 @@
             </tr>
          </thead>
          <tbody>
-            <tr ng-repeat="u in users track by $index"  
+            <tr ng-repeat="u in users track by $index" 
+               ng-mouseover="flag= 1" ng-mouseleave="flag=0"
                ng-click="modifUser($index)" 
                data-toggle="modal" data-target="#userModal">
                <td  class="text-center">{{u.name}}</td>
                <td  class="text-center">{{u.email}}</td>
                <td  class="text-center">{{u.password}}</td>
-               <td  class="text-center">{{u.type}}</td>
+               <td  class="text-center">{{u.type}}
+               <span ng-show="flag" class="colse pull-right" ng-click="deleteUser($index);$event.stopPropagation()">&times;</span>
+               </td>
             </tr>
          </tbody>
       </table>

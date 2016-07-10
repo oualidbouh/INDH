@@ -36,4 +36,9 @@ class UserController extends Controller
         return 'done';
 
     }
+
+    public function deleteUser($id){
+        User::find($id)->delete();
+        return '200';
+    }
 }

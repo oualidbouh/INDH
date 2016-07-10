@@ -10,7 +10,7 @@ app.factory('userFactory',function($http){
 			return $http.put("/users",obj);
 		},
         deleteUser : function(id){
-            return $http.delete("/user/"+id);
+            return $http.delete("/user/delete/"+id);
         }
        }
 	

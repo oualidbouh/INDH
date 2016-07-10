@@ -31,8 +31,6 @@ class marchesCtrl extends Controller
     
     public function login(Request $r)
     {
-        //var_dump($r->all()["login"]);
-        //die();
         return (User::where('email',$r->all()["login"])->where("password",$r->all()["password"])->get());
     }
     public function getMarkets($year,$type){
