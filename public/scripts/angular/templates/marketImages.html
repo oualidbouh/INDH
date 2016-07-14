@@ -7,7 +7,7 @@
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Options
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
-              <li><a href=""  data-toggle="modal" data-target="#uploadModal" ><i class="glyphicon glyphicon-plus"></i>&nbsp;<b>Ajouter</b></a></li>
+              <li><a href="" ng-hide="user.type=='visitor'" data-toggle="modal" data-target="#uploadModal" ><i class="glyphicon glyphicon-plus"></i>&nbsp;<b>Ajouter</b></a></li>
               <li><a href="" onclick='window.history.back();' ng-click="$flow.cancel()"><i class="glyphicon glyphicon-log-out"></i>&nbsp;<b>Retour</a></li>
           </ul>
       </div>

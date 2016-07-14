@@ -78,6 +78,12 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
 
 
     $scope.saveSociete = function(){
+        for(var i = 0; i < $scope.societes.length ; i++){
+                if($scope.societes[i].name_societe === $scope.soc.name_societe){
+                    toastr.error('le collaborateur saisi existe déjà !');
+                    return;
+                }
+            }
         collaborators.postSociete($scope.soc)
             .success(function(res){
                if(res){
@@ -90,10 +96,16 @@ app.controller("addMarketCtrl",function($scope,$rootScope,$location,collaborator
 
             })
             .error(function(){
-                toastr.error("Erreur lors de l'ajout du")
+                toastr.error("Erreur lors de l'ajout de la societe")
             });
     }
 	$scope.saveLabo = function(){
+        for(var i = 0; i < $scope.laboratoires.length ; i++){
+                if($scope.laboratoires[i].name_labo === $scope.labo.name_labo){
+                    toastr.error('le collaborateur saisi existe déjà !');
+                    return;
+                }
+            }
 		collaborators.postLab($scope.labo)
             .success(function(res){
                 $scope.laboratoires.push(res);

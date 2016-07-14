@@ -115,6 +115,7 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 								$("#errorModal").modal('toggle');
                             });
                     }
+                    
 			$scope.edit = false;
             $scope.tmpMarket = {};
 			$scope.editMarket = function() {
@@ -165,6 +166,7 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 					authService.logout();
 				}
 			}
+
 			$scope.saveCollaborator = function (coll) {
 				
 				collaborators.post(coll,$scope[coll])
@@ -188,7 +190,6 @@ app.controller("marketDetailsCtrl",function ($scope,$location,$rootScope,$http,$
 				}).error(function(){
 					toastr.error('erreur lors de la génération du pdf..');
 				});
-
 			}
 			$scope.sendMail = function () {
 				toastr.success('envoie de l\'email en cours..');

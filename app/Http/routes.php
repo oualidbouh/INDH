@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/excel/{type}/{year}','ExcelController@getExcel');
+
 Route::get("/markets/{year}/{type}","marchesCtrl@getMarkets");
 Route::get("/labos","CollaboratorCtrl@getLabos");
 Route::get("/bets","CollaboratorCtrl@getBets");
@@ -23,6 +23,7 @@ Route::get("/market/{id}/decomptes","marchesCtrl@getDecomptes");
 Route::get("/market/{id}/avenants","marchesCtrl@getAvenants");
 Route::get("/collaborators/all","CollaboratorCtrl@getAll");
 Route::get('/pdf/market/{id}',"marchesCtrl@downloadPdf");
+Route::get('/excel/{type}/{year}','ExcelController@getExcel');
 Route::get("/market/images/{id}","marchesCtrl@getImages");
 Route::get("/users","UserController@getUsers");
 

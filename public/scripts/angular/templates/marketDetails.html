@@ -10,8 +10,8 @@
     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Options
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="" ng-hide="edit" ng-click="editMarket()"><i class="glyphicon glyphicon-edit"></i>&nbsp;<b>Modifier les données du marché</b></a></li>
-      <li><a href="" ng-show="edit" ng-click="editMarket()"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;<b>Sauvegardez les données du marché</b></a></li>
+      <li><a href="" ng-hide="edit || user.type=='visitor'" ng-click="editMarket()"><i class="glyphicon glyphicon-edit"></i>&nbsp;<b>Modifier les données du marché</b></a></li>
+      <li><a href="" ng-show="edit" ng-hide="user.type=='visitor'" ng-click="editMarket()"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;<b>Sauvegardez les données du marché</b></a></li>
       <li><a href="" ng-click="printMarket()"><i class=" glyphicon glyphicon-print"></i>&nbsp;<b>Imprimer le marché</b></a></li>
       <li><a href="" data-toggle="modal" data-target="#mailModal"><i class="glyphicon glyphicon-envelope"></i>&nbsp;<b>Envoyer mail</b></a></li>
       <li><a href="#/images"><i class="glyphicon glyphicon-picture"></i>&nbsp;<b>Consulter les images du marché courrant</b></a></li>
@@ -233,10 +233,10 @@
                        <td width="50%"><b>{{d.montant}}</b></td>
                        <td width="50%">
                            <b>{{d.created_at}}</b>
-                           <span ng-show="x" class="close pull-right" ng-click="deleteDecompte($index)">&times;</span>
+                           <span ng-show="x && !user.type=='visitor'"  class="close pull-right" ng-click="deleteDecompte($index)">&times;</span>
                        </td>
                     </tr>
-                    <tr class="text-center">
+                    <tr class="text-center" ng-hide="user.type=='visitor'">
                        <td width="50%">
                           <input class="form-control" placeholder="montant du nouveau decompte" ng-enter="addDecompte()" name="m" type="number" ng-model="montant">
                        </td>
@@ -259,10 +259,10 @@
                    <td width="33%"><b>{{a.montant}}</b></td>
                    <td width="33%">
                        <b>{{a.created_at}}</b>
-                       <span ng-show="y" class="close pull-right" ng-click="deleteAvenant($index)">&times;</span>
+                       <span ng-show="y && !user.type=='visitor'" class="close pull-right" ng-click="deleteAvenant($index)">&times;</span>
                    </td>
                 </tr>
-                <tr class="text-center">
+                <tr class="text-center" ng-hide="user.type=='visitor'">
                    <td width="33%"><input class="form-control" placeholder="objet du nouveau avenant" type="text"  ng-model="avenant.objet"></td>
                    <td width="33%"><input class="form-control" placeholder="montant du nouveau avenant" ng-enter="addAvenant()" type="number"  ng-model="avenant.montant"></td>
                    <td width="33%"><a class="btn btn-warning btn-block" ng-click="addAvenant()"><b>ajouter avenant</b></a></td>

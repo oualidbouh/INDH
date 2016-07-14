@@ -1,4 +1,5 @@
-app.controller("marketsCtrl",function ($scope,$rootScope,$location,marketsFactory,authService) {
+app.controller("marketsCtrl",function ($scope,$rootScope,$location,marketsFactory,authService,$http) {
+
 
 	$scope.markets = [];
 	$scope.error = {};
@@ -38,7 +39,17 @@ app.controller("marketsCtrl",function ($scope,$rootScope,$location,marketsFactor
                         });
                     }
                 }
-	}else{
+
+                $scope.getExcel= function(){
+                	toastr.success("Génération du Document Excel en cours");
+                	$http.get("/excel/"+$rootScope.budgetType+"/"+$rootScope.year).success(function(res){
+                		//toastr.success("Génération du Document Excel en cours");
+                		window.open("/excel/"+$rootScope.budgetType+"/"+$rootScope.year);
+                	}).error(function(){
+                		toastr.error("Erreur lots de ma generation du document Excel");
+                	})
+                }
+           	}else{
 		$location.path("/");
 	}
 });

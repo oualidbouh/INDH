@@ -291,7 +291,7 @@
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" ng-class="{'has-error' : labForm.labName.$invalid}">
                 <div>
-                  <input class="form-control" name="labName" ng-pattern="/^[a-zA-Z]+$/" ng-model="labo.name_labo" type="text" ng-required>
+                  <input class="form-control" name="labName"  ng-model="labo.name_labo" type="text" ng-required>
                 </div>
               </div>
             </div>
@@ -347,7 +347,7 @@
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div ng-class="{'has-error':labForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-model="labo.adresse_labo" type="text" ng-required>
+                  <input class="form-control" name="address" ng-minlength="5" ng-maxlength="100" ng-model="labo.adresse_labo" type="text" ng-required>
                 </div>
               </div>
             </div>
@@ -381,7 +381,7 @@
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div ng-class="{'has-error':societeForm.nom.$invalid}">
-                  <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="soc.name_societe" type="text">
+                  <input class="form-control" name="nom"  ng-required ng-model="soc.name_societe" type="text">
                 </div>
               </div>
             </div>
@@ -437,7 +437,7 @@
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div ng-class="{'has-error':societeForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minleength="10" ng-maxlength="100" ng-model="soc.adresse_societe" type="text">
+                  <input class="form-control" name="address" ng-minleength="5" ng-maxlength="100" ng-model="soc.adresse_societe" type="text">
                 </div>
               </div>
             </div>
@@ -471,7 +471,7 @@
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div ng-class="{'has-error':betForm.nom.$invalid}">
-                  <input class="form-control" name="nom" ng-pattern="/^[a-zA-Z]+$/" ng-required ng-model="bet.name_bet" type="text">
+                  <input class="form-control" name="nom"  ng-required ng-model="bet.name_bet" type="text">
                 </div>
               </div>
             </div>
@@ -527,7 +527,7 @@
               </div>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div ng-class="{'has-error':betForm.address.$invalid}">
-                  <input class="form-control" name="address" ng-minlength="10" ng-maxlength="100" ng-required ng-model="bet.adresse_bet" type="text">
+                  <input class="form-control" name="address" ng-minlength="5" ng-maxlength="100" ng-required ng-model="bet.adresse_bet" type="text">
                 </div>
               </div>
             </div>
